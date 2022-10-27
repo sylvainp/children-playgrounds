@@ -1,0 +1,395 @@
+{
+  "nhits": 65,
+  "parameters": {
+    "dataset": "aires-de-jeux-herault",
+    "rows": 25,
+    "start": 0,
+    "format": "json",
+    "timezone": "UTC"
+  },
+  "records": [
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "361322c158eff7e9ea926980750fe1405177ef48",
+      "fields": {
+        "com_nom": "Marseillan",
+        "epci": "CA Sète Agglopôle Méditerranée",
+        "geopoint": [43.3172442005416, 3.5511626],
+        "com_insee": 34150
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.5511626, 43.3172442005416]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "6d9570c34e794755a55d47ed1c8be9cb680ccce4",
+      "fields": {
+        "com_nom": "Sérignan",
+        "epci": "CA de Béziers-Méditerranée",
+        "geopoint": [43.2854153005413, 3.2783257],
+        "name": "Parc de la Cigalière",
+        "com_insee": 34299
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.2783257, 43.2854153005413]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "af84195943347e7145815adb29f5df9ccf59d915",
+      "fields": {
+        "com_nom": "Palavas-les-Flots",
+        "epci": "CA du Pays de l'Or",
+        "geopoint": [43.5236827005418, 3.9205513],
+        "com_insee": 34192
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.9205513, 43.5236827005418]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "6aaa80964da5c916814da79cbb2410684dba2b07",
+      "fields": {
+        "com_nom": "Palavas-les-Flots",
+        "epci": "CA du Pays de l'Or",
+        "geopoint": [43.5237210005418, 3.9206194],
+        "com_insee": 34192
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.9206194, 43.5237210005418]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "ed3f74b453b38ebe2386d3b233e27fc0eb0ee8cf",
+      "fields": {
+        "com_nom": "Saint-Jean-de-Védas",
+        "epci": "Montpellier Méditerranée Métropole",
+        "geopoint": [43.5812150005414, 3.8356893],
+        "access": "no",
+        "com_insee": 34270
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.8356893, 43.5812150005414]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "7764156f2187f5cd64dd4dcfa60f02e2b72c6007",
+      "fields": {
+        "com_nom": "Le Bousquet-d'Orb",
+        "epci": "CC Grand Orb communauté de communes en Languedoc",
+        "geopoint": [43.6947560005401, 3.1661429],
+        "com_insee": 34038
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.1661429, 43.6947560005401]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "b27f528f8233cc5fff3e75964c2497651e8aa3bf",
+      "fields": {
+        "com_nom": "Valras-Plage",
+        "epci": "CA de Béziers-Méditerranée",
+        "geopoint": [43.2460095005409, 3.2948483],
+        "access": "yes",
+        "com_insee": 34324
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.2948483, 43.2460095005409]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "4cbe5acca007b2ad53bd8d13ed652128a890699d",
+      "fields": {
+        "com_nom": "Montpellier",
+        "epci": "Montpellier Méditerranée Métropole",
+        "geopoint": [43.5829642005414, 3.8578436],
+        "access": "yes",
+        "com_insee": 34172
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.8578436, 43.5829642005414]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "1277db21d33c9693e316e8a115e672d82b083a68",
+      "fields": {
+        "com_nom": "Montoulieu",
+        "epci": "CC des Cévennes Gangeoises et Suménoises",
+        "geopoint": [43.9267338005349, 3.7887329],
+        "com_insee": 34171
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.7887329, 43.9267338005349]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "31112e238b370b266b718fbd7deace1488bbe463",
+      "fields": {
+        "com_nom": "Aspiran",
+        "epci": "CC du Clermontais",
+        "geopoint": [43.5673001005415, 3.4509153],
+        "com_insee": 34013
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.4509153, 43.5673001005415]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "48ef98a1266df7415c455e1244cd387f33cddbcd",
+      "fields": {
+        "com_nom": "Palavas-les-Flots",
+        "epci": "CA du Pays de l'Or",
+        "geopoint": [43.5285100005418, 3.9341075],
+        "com_insee": 34192
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.9341075, 43.5285100005418]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "6610d79d2fad5027c39cde26d17740a8b8a5d474",
+      "fields": {
+        "com_nom": "Saint-Guilhem-le-Désert",
+        "epci": "CC Vallée de l'Hérault",
+        "geopoint": [43.7352588005394, 3.5475997],
+        "com_insee": 34261
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.5475997, 43.7352588005394]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "ae01ca7da17408506a74671c51b26d53896e3503",
+      "fields": {
+        "com_nom": "Ganges",
+        "epci": "CC des Cévennes Gangeoises et Suménoises",
+        "geopoint": [43.9353142005347, 3.7089935],
+        "access": "yes",
+        "com_insee": 34111
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.7089935, 43.9353142005347]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "261e3f056da5399575f2c29052c6cf6c70585b4d",
+      "fields": {
+        "com_nom": "Saint-Just",
+        "epci": "CC du Pays de Lunel",
+        "geopoint": [43.6552257005406, 4.1126659],
+        "com_insee": 34272
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [4.1126659, 43.6552257005406]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "f8013edcdcc122a6ba8f328c2f3ee507382fd46e",
+      "fields": {
+        "com_nom": "Marsillargues",
+        "epci": "CC du Pays de Lunel",
+        "geopoint": [43.6670867005405, 4.1802522],
+        "com_insee": 34151
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [4.1802522, 43.6670867005405]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "91ad72100f0a1a5f0a77d700c95af26af7439892",
+      "fields": {
+        "com_nom": "Marsillargues",
+        "epci": "CC du Pays de Lunel",
+        "geopoint": [43.6670737005405, 4.1801391],
+        "com_insee": 34151
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [4.1801391, 43.6670737005405]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "7323251f53058cd759343f63a041037b561f0660",
+      "fields": {
+        "com_nom": "Castelnau-le-Lez",
+        "epci": "Montpellier Méditerranée Métropole",
+        "geopoint": [43.6332877005409, 3.9003475],
+        "access": "private",
+        "com_insee": 34057
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.9003475, 43.6332877005409]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "811dae89e9aa9677b09e16ba8a11a78aead3c232",
+      "fields": {
+        "com_nom": "Castelnau-le-Lez",
+        "epci": "Montpellier Méditerranée Métropole",
+        "geopoint": [43.6323433005409, 3.9007974],
+        "access": "private",
+        "com_insee": 34057
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.9007974, 43.6323433005409]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "0cd4e6c001b5f03b681f2262316afb5e795383fc",
+      "fields": {
+        "com_nom": "Servian",
+        "epci": "CA de Béziers-Méditerranée",
+        "geopoint": [43.423933300542, 3.3104441],
+        "name": "Aire de jeux pour enfants",
+        "com_insee": 34300
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.3104441, 43.423933300542]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "5119fda1c91df6e51580880ba8dc2dcd84448790",
+      "fields": {
+        "com_nom": "Balaruc-les-Bains",
+        "epci": "CA Sète Agglopôle Méditerranée",
+        "geopoint": [43.438598100542, 3.6761882],
+        "com_insee": 34023
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.6761882, 43.438598100542]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "2ce06605c8a4958eb456a4fdafb00d21285a4164",
+      "fields": {
+        "com_nom": "La Salvetat-sur-Agout",
+        "epci": "CC des Monts de Lacaune et de la Montagne du Haut Languedoc",
+        "geopoint": [43.6024259005412, 2.6804797],
+        "com_insee": 34293
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [2.6804797, 43.6024259005412]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "03e227c975c8f5a5d2906e4aa727f03ecc997a0c",
+      "fields": {
+        "com_nom": "La Tour-sur-Orb",
+        "epci": "CC Grand Orb communauté de communes en Languedoc",
+        "geopoint": [43.6758268005404, 3.1658918],
+        "com_insee": 34312
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.1658918, 43.6758268005404]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "c5fe0b937b3e5a929ecd72e5326de9730510d956",
+      "fields": {
+        "com_nom": "Gigean",
+        "epci": "CA Sète Agglopôle Méditerranée",
+        "geopoint": [43.5001598593583, 3.71277337081042],
+        "com_insee": 34113
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.71277337081042, 43.5001598593583]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "875d4e5c8173eb71bf20106a8e19f66577262a6c",
+      "fields": {
+        "com_nom": "Agde",
+        "epci": "CA Hérault-Méditerranée",
+        "geopoint": [43.3273312005609, 3.48288329999868],
+        "com_insee": 34003
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.48288329999868, 43.3273312005609]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "0474849e77f63e638db779b5a6f850beab332c25",
+      "fields": {
+        "com_nom": "Vias",
+        "epci": "CA Hérault-Méditerranée",
+        "geopoint": [43.2977171782988, 3.42293661539158],
+        "com_insee": 34332
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.42293661539158, 43.2977171782988]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    }
+  ]
+}
