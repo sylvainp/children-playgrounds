@@ -1,0 +1,249 @@
+{
+  "nhits": 65,
+  "parameters": {
+    "dataset": "aires-de-jeux-herault",
+    "rows": 25,
+    "start": 50,
+    "format": "json",
+    "timezone": "UTC"
+  },
+  "records": [
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "234992b56931f1cb0e8abcbd3cfcd7cd2dcca458",
+      "fields": {
+        "com_nom": "Sérignan",
+        "epci": "CA de Béziers-Méditerranée",
+        "geopoint": [43.2679830005568, 3.33351984999851],
+        "com_insee": 34299
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.33351984999851, 43.2679830005568]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "1fc53ac61f1699d6307db4f346dc9fcfe5fe03ec",
+      "fields": {
+        "com_nom": "Le Crès",
+        "epci": "Montpellier Méditerranée Métropole",
+        "geopoint": [43.6415434157551, 3.94316275565722],
+        "access": "customers",
+        "name": "McDonald's PlayPlace",
+        "com_insee": 34090
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.94316275565722, 43.6415434157551]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "0f54f6d1af193495f841516830e62fceb284dff8",
+      "fields": {
+        "com_nom": "Péret",
+        "epci": "CC du Clermontais",
+        "geopoint": [43.5772449522784, 3.39545608948144],
+        "com_insee": 34197
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.39545608948144, 43.5772449522784]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "792cd4c740eb4e8b29847ac4fd6403715fb9aeb8",
+      "fields": {
+        "com_nom": "Montferrier-sur-Lez",
+        "epci": "Montpellier Méditerranée Métropole",
+        "geopoint": [43.6678774299279, 3.8608102228827],
+        "com_insee": 34169
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.8608102228827, 43.6678774299279]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "d4e44124e11334942307754b0441d20615cb41ac",
+      "fields": {
+        "com_nom": "Canet",
+        "epci": "CC du Clermontais",
+        "geopoint": [43.6119332180078, 3.49629694654767],
+        "com_insee": 34051
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.49629694654767, 43.6119332180078]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "72c129c257db6168743d6c7d73443c0049a55ce4",
+      "fields": {
+        "com_nom": "Cournonsec",
+        "epci": "Montpellier Méditerranée Métropole",
+        "geopoint": [43.550527043646, 3.70771114463956],
+        "name": "Aire de jeu",
+        "com_insee": 34087
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.70771114463956, 43.550527043646]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "69e791bf97c58df050655a4e2e60bb333a1c14f4",
+      "fields": {
+        "com_nom": "Montpeyroux",
+        "epci": "CC Vallée de l'Hérault",
+        "geopoint": [43.6978367139832, 3.50269038969928],
+        "com_insee": 34173
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.50269038969928, 43.6978367139832]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "73586c77323221ed95c7454afee9f60e7c3094bb",
+      "fields": {
+        "com_nom": "Saint-Jean-de-Védas",
+        "epci": "Montpellier Méditerranée Métropole",
+        "geopoint": [43.5784877925444, 3.82315744111363],
+        "access": "yes",
+        "name": "Aire de Jeux Jean Moulin",
+        "operator": "Ville de Saint-Jean-de-Védas",
+        "com_insee": 34270
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.82315744111363, 43.5784877925444]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "e9a078d63d31ab90d0a015594ab3263c7bee1741",
+      "fields": {
+        "com_nom": "Montpellier",
+        "epci": "Montpellier Méditerranée Métropole",
+        "geopoint": [43.6175395729134, 3.83939137844273],
+        "access": "no",
+        "com_insee": 34172
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.83939137844273, 43.6175395729134]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "177a843cb6268660d26f688e6cc19d03075ee5fe",
+      "fields": {
+        "com_nom": "Saint-Jean-de-Védas",
+        "epci": "Montpellier Méditerranée Métropole",
+        "geopoint": [43.5769297505545, 3.82467649999887],
+        "name": "Aire de Jeux du Puits de Gaud",
+        "operator": "Ville de Saint-Jean-de-Védas",
+        "com_insee": 34270
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.82467649999887, 43.5769297505545]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "4e3f8eca925d9171ab0dcf48a35a7b893e38a0f6",
+      "fields": {
+        "com_nom": "Lattes",
+        "epci": "Montpellier Méditerranée Métropole",
+        "geopoint": [43.56882323089, 3.9027831414207],
+        "name": "Aire de Jeux de Lattara",
+        "com_insee": 34129
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.9027831414207, 43.56882323089]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "505bf02b6e2cd1b587aa51cc81d8c37a559a0412",
+      "fields": {
+        "com_nom": "Saint-Mathieu-de-Tréviers",
+        "epci": "CC du Grand Pic Saint-Loup",
+        "geopoint": [43.7688627866745, 3.86333759972404],
+        "access": "yes",
+        "com_insee": 34276
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.86333759972404, 43.7688627866745]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "36ecccdd43db0bca6b0955f98b69413b6442ae96",
+      "fields": {
+        "com_nom": "Poussan",
+        "epci": "CA Sète Agglopôle Méditerranée",
+        "geopoint": [43.4867898621544, 3.66755239999381],
+        "com_insee": 34213
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.66755239999381, 43.4867898621544]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "220e868680129c545e9a0b43fd40a5349f164ce4",
+      "fields": {
+        "com_nom": "Portiragnes",
+        "epci": "CA Hérault-Méditerranée",
+        "geopoint": [43.277140761139, 3.36317426017153],
+        "com_insee": 34209
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.36317426017153, 43.277140761139]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "625743736f485e593b014c87af906dd6f0f3c593",
+      "fields": {
+        "com_nom": "Montpellier",
+        "epci": "Montpellier Méditerranée Métropole",
+        "geopoint": [43.6277906796213, 3.81469697334162],
+        "access": "yes",
+        "com_insee": 34172
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.81469697334162, 43.6277906796213]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    }
+  ]
+}

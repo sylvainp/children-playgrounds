@@ -1,0 +1,396 @@
+{
+  "nhits": 65,
+  "parameters": {
+    "dataset": "aires-de-jeux-herault",
+    "rows": 25,
+    "start": 25,
+    "format": "json",
+    "timezone": "UTC"
+  },
+  "records": [
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "99e464ed32ab706bd8ef24558e065ffd287b5fd1",
+      "fields": {
+        "com_nom": "Lespignan",
+        "epci": "CC La Domitienne",
+        "geopoint": [43.2689460128228, 3.16849750863155],
+        "com_insee": 34135
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.16849750863155, 43.2689460128228]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "8dea7bdc5b55dd4904f8f1f562beeb243e3a86cd",
+      "fields": {
+        "com_nom": "Sainte-Croix-de-Quintillargues",
+        "epci": "CC du Grand Pic Saint-Loup",
+        "geopoint": [43.7732535172078, 3.9099671330011],
+        "com_insee": 34248
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.9099671330011, 43.7732535172078]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "2d1f1b3026a98017354899bfd25c5cf30437c493",
+      "fields": {
+        "com_nom": "Pomérols",
+        "epci": "CA Hérault-Méditerranée",
+        "geopoint": [43.3899292005567, 3.50252225],
+        "com_insee": 34207
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.50252225, 43.3899292005567]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "3110be7c75dac06016757a40dd891403991e79e8",
+      "fields": {
+        "com_nom": "Abeilhan",
+        "epci": "CC Les Avant-Monts",
+        "geopoint": [43.4475097533116, 3.29690848496174],
+        "com_insee": 34001
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.29690848496174, 43.4475097533116]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "d63bd23917db08e5f1ba016db8af342a871bfed4",
+      "fields": {
+        "com_nom": "Vendargues",
+        "epci": "Montpellier Méditerranée Métropole",
+        "geopoint": [43.6543379296647, 3.98110580748819],
+        "com_insee": 34327
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.98110580748819, 43.6543379296647]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "d40ff23e6fc516e11b330a05c6b175160b39e486",
+      "fields": {
+        "com_nom": "Béziers",
+        "epci": "CA de Béziers-Méditerranée",
+        "geopoint": [43.3638587666408, 3.23282773041656],
+        "com_insee": 34032
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.23282773041656, 43.3638587666408]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "8856fdf818e8b4ed59318eef7afb72c3cb62686b",
+      "fields": {
+        "com_nom": "Brissac",
+        "epci": "CC des Cévennes Gangeoises et Suménoises",
+        "geopoint": [43.8794448942502, 3.70064588791308],
+        "com_insee": 34042
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.70064588791308, 43.8794448942502]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "0e53e71d2bdcaed58a9a551de4998b414cb1bad6",
+      "fields": {
+        "com_nom": "Teyran",
+        "epci": "CC du Grand Pic Saint-Loup",
+        "geopoint": [43.6883153253523, 3.92931975343662],
+        "com_insee": 34309
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.92931975343662, 43.6883153253523]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "110f37d22ab8c9e74b0dfee92026035eab0625a0",
+      "fields": {
+        "com_nom": "Juvignac",
+        "epci": "Montpellier Méditerranée Métropole",
+        "geopoint": [43.6065217542736, 3.81720277718659],
+        "com_insee": 34123
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.81720277718659, 43.6065217542736]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "081bf67f0d25d3833dab0bb53d71692d262d2639",
+      "fields": {
+        "com_nom": "Restinclières",
+        "epci": "Montpellier Méditerranée Métropole",
+        "geopoint": [43.7235186272973, 4.03555456823779],
+        "com_insee": 34227
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [4.03555456823779, 43.7235186272973]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "7bacb028de0b13f0a614bba79d3d414f96e2e70e",
+      "fields": {
+        "com_nom": "Graissessac",
+        "epci": "CC Grand Orb communauté de communes en Languedoc",
+        "geopoint": [43.6781820684064, 3.0953871880166],
+        "com_insee": 34117
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.0953871880166, 43.6781820684064]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "41809d03b44a797397c3b897d31c2e0f6a5d29e3",
+      "fields": {
+        "com_nom": "Montpellier",
+        "epci": "Montpellier Méditerranée Métropole",
+        "geopoint": [43.6215184521207, 3.86731140671131],
+        "com_insee": 34172
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.86731140671131, 43.6215184521207]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "b9cd860be2aff9b2449a0c0e3273f5f43bcd4b26",
+      "fields": {
+        "com_nom": "Hérépian",
+        "epci": "CC Grand Orb communauté de communes en Languedoc",
+        "geopoint": [43.5922540312472, 3.11193719033937],
+        "name": "Aire de Jeux Jean Bernard",
+        "com_insee": 34119
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.11193719033937, 43.5922540312472]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "83f74dd47b42a6db880441ede5ac86f3596b9cb8",
+      "fields": {
+        "com_nom": "Saint-Brès",
+        "epci": "Montpellier Méditerranée Métropole",
+        "geopoint": [43.6718436795575, 4.0322643788951],
+        "com_insee": 34244
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [4.0322643788951, 43.6718436795575]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "82a459a141c21dc1e31b7fd4cf361bad0b451aa8",
+      "fields": {
+        "com_nom": "Montpellier",
+        "epci": "Montpellier Méditerranée Métropole",
+        "geopoint": [43.6211016295228, 3.84672572973484],
+        "com_insee": 34172
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.84672572973484, 43.6211016295228]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "481ddc6013360d2e4785c8fb1bd423d363cc377b",
+      "fields": {
+        "com_nom": "Vias",
+        "epci": "CA Hérault-Méditerranée",
+        "geopoint": [43.289936707655, 3.41842720767718],
+        "com_insee": 34332
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.41842720767718, 43.289936707655]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "9f4cf3cff96135c27f69b2f731d23d5283695ad7",
+      "fields": {
+        "com_nom": "Montpellier",
+        "epci": "Montpellier Méditerranée Métropole",
+        "geopoint": [43.6057673318707, 3.87976065493894],
+        "access": "yes",
+        "com_insee": 34172
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.87976065493894, 43.6057673318707]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "23ef76d025627bbbaf213091d1a8f43c45b89b9a",
+      "fields": {
+        "com_nom": "Lieuran-lès-Béziers",
+        "epci": "CA de Béziers-Méditerranée",
+        "geopoint": [43.4212292005706, 3.23569390000569],
+        "com_insee": 34139
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.23569390000569, 43.4212292005706]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "ef3a679cddc2efb14c72820a7495c675d36b2d19",
+      "fields": {
+        "com_nom": "Saint-Pons-de-Thomières",
+        "epci": "CC du Minervois au Caroux",
+        "geopoint": [43.4896447286938, 2.75910646962351],
+        "name": "Square du Souvenir Français",
+        "com_insee": 34284
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [2.75910646962351, 43.4896447286938]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "1bacaa9ebdf9dcdbc7237d9ef911738b760e1421",
+      "fields": {
+        "com_nom": "Saint-Clément-de-Rivière",
+        "epci": "CC du Grand Pic Saint-Loup",
+        "geopoint": [43.7070196724439, 3.83299087789533],
+        "access": "yes",
+        "com_insee": 34247
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.83299087789533, 43.7070196724439]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "b2c68bee15a535a0f23a4e459e8dc1a758f3785c",
+      "fields": {
+        "com_nom": "Montpellier",
+        "epci": "Montpellier Méditerranée Métropole",
+        "geopoint": [43.6018729551823, 3.89349632518974],
+        "wheelchair": "yes",
+        "access": "yes",
+        "com_insee": 34172
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.89349632518974, 43.6018729551823]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "aefe4917b1e4068134e73d30cacc75c2108fa30e",
+      "fields": {
+        "com_nom": "Montpellier",
+        "epci": "Montpellier Méditerranée Métropole",
+        "geopoint": [43.5965546141652, 3.8690782548575],
+        "access": "yes",
+        "com_insee": 34172
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.8690782548575, 43.5965546141652]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "b92541f620014826f8381bde1adb46bcec56817a",
+      "fields": {
+        "com_nom": "Lamalou-les-Bains",
+        "epci": "CC Grand Orb communauté de communes en Languedoc",
+        "geopoint": [43.6036399307673, 3.0789432640929],
+        "name": "Square Docteur Georges Tabarie",
+        "com_insee": 34126
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.0789432640929, 43.6036399307673]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "498a832d2aac2562ef52cc76a445246fcedfa09c",
+      "fields": {
+        "com_nom": "Montpellier",
+        "epci": "Montpellier Méditerranée Métropole",
+        "geopoint": [43.607589964483, 3.88984682561981],
+        "access": "yes",
+        "com_insee": 34172
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.88984682561981, 43.607589964483]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    },
+    {
+      "datasetid": "aires-de-jeux-herault",
+      "recordid": "234992b56931f1cb0e8abcbd3cfcd7cd2dcca458",
+      "fields": {
+        "com_nom": "Sérignan",
+        "epci": "CA de Béziers-Méditerranée",
+        "geopoint": [43.2679830005568, 3.33351984999851],
+        "com_insee": 34299
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.33351984999851, 43.2679830005568]
+      },
+      "record_timestamp": "2022-10-21T04:08:36.885Z"
+    }
+  ]
+}
