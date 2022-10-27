@@ -28,7 +28,7 @@ describe("ListAllPlaygroundsUsecase", () => {
   });
 
   it("usecase must return a usecaseresponse with result returned by repositoty no error", async () => {
-    expect.assertions(1);
+    expect.assertions(2);
     const expectedresult: PlaygroundEntity[] = [
       new PlaygroundEntity(
         "1",
@@ -46,20 +46,22 @@ describe("ListAllPlaygroundsUsecase", () => {
     jest
       .spyOn(playgroundRepositoryMock, "getAll")
       .mockResolvedValue(expectedresult);
-    await expect(usecase.call()).resolves.toStrictEqual(
-      UsecaseResponse.fromResult(expectedresult)
-    );
+    const usecaseResponse: UsecaseResponse<PlaygroundEntity[]> =
+      await usecase.call();
+    expect(usecaseResponse.result).toStrictEqual(expectedresult);
+    expect(usecaseResponse.error).toBeNull();
   });
 
   it("usecase must return a usecaseresponse with error returned by repository", async () => {
-    expect.assertions(1);
+    expect.assertions(2);
     const expectedError = new Error("internal error");
     jest
       .spyOn(playgroundRepositoryMock, "getAll")
       .mockResolvedValue(expectedError);
 
-    await expect(usecase.call()).resolves.toStrictEqual(
-      UsecaseResponse.fromError(expectedError)
-    );
+    const usecaseResponse: UsecaseResponse<PlaygroundEntity[]> =
+      await usecase.call();
+    expect(usecaseResponse.result).toBeNull();
+    expect(usecaseResponse.error).toStrictEqual(expectedError);
   });
 });

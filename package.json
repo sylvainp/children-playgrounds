@@ -6,8 +6,9 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
-    "test": "jest --config __tests__/jest.config.js --watch-all",
-    "lint": "eslint . --fix"
+    "test": "jest --config __tests__/jest.config.js",
+    "test:watch": "npm run test -- --watch-all",
+    "test:coverage": "npm run test -- --coverage"
   },
   "dependencies": {
     "react": "18.1.0",

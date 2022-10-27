@@ -67,4 +67,15 @@ describe("PlaygroundsRepositoryImpl", () => {
       .mockRejectedValue(expectedError);
     await expect(repository.getAll()).resolves.toStrictEqual(expectedError);
   });
+
+  it("getAll must return a error based on unexpected error throw by heraultdatasource response", async () => {
+    expect.assertions(1);
+    const expectedError = { error: { message: ["server unreachable"] } };
+    jest
+      .spyOn(heraultDatasource, "fetchAllPlaygrounds")
+      .mockRejectedValue(expectedError);
+    await expect(repository.getAll()).resolves.toStrictEqual(
+      new Error(JSON.stringify(expectedError))
+    );
+  });
 });
