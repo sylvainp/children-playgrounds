@@ -11,6 +11,10 @@ describe("heraultdataDatasource", () => {
     datasource = new HeraultdataDatasource();
   });
 
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   const mockFetchRequest = (
     mockImplementation: { expectedResult: any; expectedStatus: number }[]
   ) => {
@@ -27,7 +31,7 @@ describe("heraultdataDatasource", () => {
 
   it("fetchAll must call global fetch method with spécific url", async () => {
     expect.assertions(1);
-    const expectedURL = `${baseUrl}?rows=25&start=0`;
+    const expectedURL = `${baseUrl}&rows=25&start=0`;
     mockFetchRequest([
       { expectedResult: { records: [] }, expectedStatus: 200 },
     ]);
@@ -49,7 +53,7 @@ describe("heraultdataDatasource", () => {
     expect(result.length).toBe(expectedItemsCount);
   });
 
-  it.skip("fetchAll must throw an error if fetch request return status code other than 200", async () => {
+  it("fetchAll must throw an error if fetch request return status code other than 200", async () => {
     expect.assertions(1);
     const expectedError = { error: "internal server error", code: 500 };
     mockFetchRequest([{ expectedResult: expectedError, expectedStatus: 500 }]);
@@ -59,8 +63,8 @@ describe("heraultdataDatasource", () => {
   });
 
   it("fetchAll must call global fetch function until all results are returned", async () => {
-    expect.assertions(3);
-    const expectedURL = `${baseUrl}?rows=25`;
+    expect.assertions(4);
+    const expectedURL = `${baseUrl}&rows=25`;
     const expectedRequestInit = { method: "GET" };
     const expectedResult1 = require("../../mocks/herault_data_fetch_pagination/heraultdata_fetchall_page1.json");
     const expectedResult2 = require("../../mocks/herault_data_fetch_pagination/heraultdata_fetchall_page2.json");
@@ -70,7 +74,10 @@ describe("heraultdataDatasource", () => {
       { expectedResult: expectedResult2, expectedStatus: 200 },
       { expectedResult: expectedResult3, expectedStatus: 200 },
     ]);
-    await datasource.fetchAllPlaygrounds();
+    const result: PlaygroundHeraultDataModel[] =
+      await datasource.fetchAllPlaygrounds();
+
+    expect(result.length).toEqual(65);
     expect(globalThis.fetch).toHaveBeenNthCalledWith(
       1,
       `${expectedURL}&start=0`,

@@ -64,7 +64,9 @@ function PlaygroundsPage() {
         {pageState.isLoading && (
           <ActivityIndicator style={styles.activity_indicator} size="large" />
         )}
-        {pageState.error && <Text>{pageState.error.message}</Text>}
+        {pageState.error && (
+          <Text style={styles.error_label}>{pageState.error.message}</Text>
+        )}
         {pageState.playgrounds && (
           <FlatList
             data={pageState.playgrounds}

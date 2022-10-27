@@ -23,37 +23,38 @@ export default class HeraultdataDatasource {
 
   async fetchAllPlaygrounds(): Promise<PlaygroundHeraultDataModel[]> {
     let datas: PlaygroundHeraultDataModel[] = [];
-
+    let error: Error | null = null;
     await lastValueFrom(
       this.fetchPlaygroundsForStartIndex().pipe(
-        tap((serverResponse: { status: number; response: any }) => {
-          datas = datas.concat(serverResponse.response.records);
-        }),
         expand((previousData: { status: number; response: any }) =>
-          previousData.status === 200 &&
+          error === null &&
           previousData.response.records.length === this.records_per_page
             ? this.fetchPlaygroundsForStartIndex(
                 this.startIndex + this.records_per_page
               )
             : EMPTY
-        )
+        ),
+        tap((serverResponse: { status: number; response: any }) => {
+          if (serverResponse.status === 200) {
+            datas = datas.concat(serverResponse.response.records);
+          } else {
+            error = new Error(JSON.stringify(serverResponse.response));
+          }
+        })
       )
     );
+    if (error) {
+      throw error;
+    }
+
     return datas;
-    // const serverResponse: { status: number; response: any } =
-    //   await lastValueFrom(this.fetchPlaygroundsForStartIndex());
-    // const serverResponseJson: any = serverResponse.response;
-    // if (serverResponse.status === 200) {
-    //   return serverResponseJson.records;
-    // }
-    // throw new Error(JSON.stringify(serverResponseJson));
   }
 
   fetchPlaygroundsForStartIndex(
     startIndex: number = 0
   ): Observable<{ status: number; response: any }> {
     this.startIndex = startIndex;
-    const url = `${this.base_url}?rows=${this.records_per_page}&start=${this.startIndex}`;
+    const url = `${this.base_url}&rows=${this.records_per_page}&start=${this.startIndex}`;
 
     return from(
       fetch(url, {
