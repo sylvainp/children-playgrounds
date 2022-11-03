@@ -21,8 +21,8 @@ export default class PlaygroundsRepositoryImpl implements PlaygroundRepository {
             item.recordid,
             item.fields.com_nom,
             {
-              latitude: `${item.geometry.coordinates[1]}`,
-              longitude: `${item.geometry.coordinates[0]}`,
+              latitude: item.geometry.coordinates[1],
+              longitude: item.geometry.coordinates[0],
             },
             item.record_timestamp
           )

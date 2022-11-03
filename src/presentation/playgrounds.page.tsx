@@ -9,6 +9,8 @@ import {
   Text,
   View,
 } from "react-native";
+import MapView from "react-native-map-clustering";
+import { Marker } from "react-native-maps";
 import PlaygroundEntity from "../domain/entities/playground.entity";
 import createPlaygroundsState, { PlaygroundsState } from "./playgrounds.state";
 
@@ -43,14 +45,12 @@ const styles = StyleSheet.create({
   },
 });
 
-const renderItem = ({ item }: any) => (
-  <View style={styles.item}>
-    <Text style={styles.title}>{item.cityName}</Text>
-    <Text
-      style={styles.subtitle}
-    >{`${item.coordinate.latitude}, ${item.coordinate.longitude}`}</Text>
-  </View>
-);
+const INITIAL_REGION = {
+  latitude: 42.99237128064096,
+  longitude: 4.037089711576773,
+  latitudeDelta: 8.5,
+  longitudeDelta: 8.5,
+};
 
 function PlaygroundsPage() {
   const pageState: PlaygroundsState = createPlaygroundsState();
@@ -68,11 +68,11 @@ function PlaygroundsPage() {
           <Text style={styles.error_label}>{pageState.error.message}</Text>
         )}
         {pageState.playgrounds && (
-          <FlatList
-            data={pageState.playgrounds}
-            renderItem={renderItem}
-            keyExtractor={(item: PlaygroundEntity) => item.id}
-          />
+          <MapView initialRegion={INITIAL_REGION} style={{ flex: 1 }}>
+            {pageState.playgrounds.map((item) => (
+              <Marker coordinate={item.coordinate} key={item.id} />
+            ))}
+          </MapView>
         )}
       </View>
     </SafeAreaView>

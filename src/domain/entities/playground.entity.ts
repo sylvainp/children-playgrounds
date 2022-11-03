@@ -1,6 +1,6 @@
 export interface Coordinate {
-  latitude: string;
-  longitude: string;
+  latitude: number;
+  longitude: number;
 }
 
 export default class PlaygroundEntity {
