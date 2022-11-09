@@ -12,17 +12,18 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faMap, faUser } from "@fortawesome/free-solid-svg-icons";
-import { StyleSheet, View, Dimensions, SafeAreaView } from "react-native";
+import { StyleSheet, View, SafeAreaView } from "react-native";
 import HeraultdataDatasource from "./src/data/datasources/heraultdata.datasource";
 import PlaygroundsRepositoryImpl from "./src/data/repositories/playgrounds.repository.impl";
 import { PlaygroundRepositoryInjectorName } from "./src/domain/repositories/playground.repository";
 import PlaygroundsPage from "./src/presentation/playgrounds.page";
 import LoginPage from "./src/presentation/login.page";
 import HeaderSVGBackground from "./assets/images/header_background.svg";
+import SupabaseDatasource from "./src/data/datasources/supabase.datasource";
+import { UserRepositoryInjectorName } from "./src/domain/repositories/user.repository";
+import UserRepositoryImpl from "./src/data/repositories/user.repository.impl";
 
 const Tab = createBottomTabNavigator();
-const windowWidth = Dimensions.get("window").width;
-const windowHeight = Dimensions.get("window").height;
 
 container
   .register(
@@ -31,8 +32,18 @@ container
     { lifecycle: Lifecycle.Singleton }
   )
   .register(
+    UserRepositoryInjectorName,
+    { useClass: UserRepositoryImpl },
+    { lifecycle: Lifecycle.Singleton }
+  )
+  .register(
     HeraultdataDatasource.injectorName,
     { useClass: HeraultdataDatasource },
+    { lifecycle: Lifecycle.Singleton }
+  )
+  .register(
+    SupabaseDatasource.injectorName,
+    { useClass: SupabaseDatasource },
     { lifecycle: Lifecycle.Singleton }
   );
 

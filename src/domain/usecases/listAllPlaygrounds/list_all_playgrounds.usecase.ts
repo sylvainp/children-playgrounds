@@ -1,11 +1,12 @@
+/* eslint-disable no-unused-vars */
 import "reflect-metadata";
 import { autoInjectable, inject } from "tsyringe";
-import Usecase from "../../common/usecase/usecase";
-import UsecaseResponse from "../../common/usecase/usecase_response";
-import Playground from "../entities/playground.entity";
+import Usecase from "../../../common/usecase/usecase";
+import UsecaseResponse from "../../../common/usecase/usecase_response";
+import Playground from "../../entities/playground.entity";
 import PlaygroundRepository, {
   PlaygroundRepositoryInjectorName,
-} from "../repositories/playground.repository";
+} from "../../repositories/playground.repository";
 
 @autoInjectable()
 export default class ListAllPlaygroundsUsecase extends Usecase<

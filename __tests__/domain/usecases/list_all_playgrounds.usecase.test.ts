@@ -2,8 +2,8 @@ import { container } from "tsyringe";
 import UsecaseResponse from "../../../src/common/usecase/usecase_response";
 import PlaygroundEntity from "../../../src/domain/entities/playground.entity";
 import { PlaygroundRepositoryInjectorName } from "../../../src/domain/repositories/playground.repository";
-import ListAllPlaygroundsUsecase from "../../../src/domain/usecases/list_all_playgrounds.usecase";
-import PlaygroundRepositoryMock from "../../mocks/playground.repository.mock";
+import ListAllPlaygroundsUsecase from "../../../src/domain/usecases/listAllPlaygrounds/list_all_playgrounds.usecase";
+import PlaygroundRepositoryMock from "../../mocks/classes/playground.repository.mock";
 
 describe("ListAllPlaygroundsUsecase", () => {
   let playgroundRepositoryMock: PlaygroundRepositoryMock;
@@ -33,13 +33,13 @@ describe("ListAllPlaygroundsUsecase", () => {
       new PlaygroundEntity(
         "1",
         "Montpellier",
-        { latitude: "1", longitude: "2" },
+        { latitude: 1, longitude: 2 },
         "mock_date"
       ),
       new PlaygroundEntity(
         "2",
         "Lattes",
-        { latitude: "3", longitude: "3" },
+        { latitude: 3, longitude: 3 },
         "mock_date"
       ),
     ];

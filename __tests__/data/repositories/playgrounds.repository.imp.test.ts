@@ -7,7 +7,7 @@ import PlaygroundEntity from "../../../src/domain/entities/playground.entity";
 import PlaygroundRepository, {
   PlaygroundRepositoryInjectorName,
 } from "../../../src/domain/repositories/playground.repository";
-import HeraultdataDatasourceMock from "../../mocks/heraultdata.datasource.mock";
+import HeraultdataDatasourceMock from "../../mocks/classes/heraultdata.datasource.mock";
 
 describe("PlaygroundsRepositoryImpl", () => {
   let repository: PlaygroundRepository;
@@ -38,7 +38,7 @@ describe("PlaygroundsRepositoryImpl", () => {
   it("getAll must return PlaygroundEntity array built on heraultdatasource response", async () => {
     expect.assertions(1);
     const mockReturnedValue: PlaygroundHeraultDataModel[] =
-      require("../../mocks/herault_data_playgrounds.json") as PlaygroundHeraultDataModel[];
+      require("../../mocks/datas/herault_data_playgrounds.json") as PlaygroundHeraultDataModel[];
 
     jest
       .spyOn(heraultDatasource, "fetchAllPlaygrounds")
