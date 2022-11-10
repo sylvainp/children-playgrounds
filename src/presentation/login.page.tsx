@@ -1,43 +1,38 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import React from "react";
-import { container } from "tsyringe";
-import SignupUsecase from "../domain/usecases/signup/signup.usecase";
+import React, { useState } from "react";
+import SegmentedControl from "@react-native-segmented-control/segmented-control";
+import SignupComponent from "./signup.component";
 
 const styles = StyleSheet.create({
   container: {
     flexDirection: "column",
     flex: 1,
     backgroundColor: "#f4c8be",
-    justifyContent: "center",
-    paddingHorizontal: 16,
   },
 
-  signupButton: {
+  segment_control: {
+    margin: 16,
     height: 50,
-    justifyContent: "center",
-    backgroundColor: "white",
-    borderRadius: 20,
   },
 });
 
-const onTestSignupPressed = () => {
-  const signupUsecase = container.resolve(SignupUsecase);
-  signupUsecase.call({
-    email: "puccinell.sylvain@gmail.com",
-    familyName: "Puccinelli",
-    givenName: "Sylvain",
-    password: "passwordpassword",
-  });
-};
 function LoginPage() {
+  const [index, setIndex] = useState(1);
   return (
     <View style={styles.container}>
-      <TouchableOpacity
-        style={styles.signupButton}
-        onPress={onTestSignupPressed}
-      >
-        <Text style={{ textAlign: "center" }}>Test signup</Text>
-      </TouchableOpacity>
+      <SegmentedControl
+        style={styles.segment_control}
+        values={["Se connecter", "S'inscrire"]}
+        selectedIndex={1}
+        tintColor="#b5614e"
+        fontStyle={{ color: "#b5614e" }}
+        activeFontStyle={{ color: "white" }}
+        onChange={(event) => {
+          setIndex(event.nativeEvent.selectedSegmentIndex);
+        }}
+      />
+      {index === 0 && <Text style={{ textAlign: "center" }}>Comming soon</Text>}
+      {index === 1 && <SignupComponent />}
     </View>
   );
 }
