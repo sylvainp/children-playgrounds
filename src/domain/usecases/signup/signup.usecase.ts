@@ -19,7 +19,11 @@ export default class SignupUsecase extends Usecase<SignupRequest, void> {
   }
 
   async call(request: SignupRequest): Promise<UsecaseResponse<void>> {
-    await this.userRepository.signup(request);
+    const error = await this.userRepository.signup(request);
+    if (error) {
+      console.error({ error });
+      return UsecaseResponse.fromError(error);
+    }
     return UsecaseResponse.fromResult(undefined);
   }
 }
