@@ -12,7 +12,8 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faMap, faUser } from "@fortawesome/free-solid-svg-icons";
-import { StyleSheet, View, SafeAreaView } from "react-native";
+import { StyleSheet } from "react-native";
+import { SUPABASE_PROJECT_ID, SUPABASE_ANON_KEY } from "@env";
 import HeraultdataDatasource from "./src/data/datasources/heraultdata.datasource";
 import PlaygroundsRepositoryImpl from "./src/data/repositories/playgrounds.repository.impl";
 import { PlaygroundRepositoryInjectorName } from "./src/domain/repositories/playground.repository";
@@ -44,7 +45,9 @@ container
     SupabaseDatasource.injectorName,
     { useClass: SupabaseDatasource },
     { lifecycle: Lifecycle.Singleton }
-  );
+  )
+  .register("SUPABASE_PROJECT_ID", { useValue: SUPABASE_PROJECT_ID })
+  .register("SUPABASE_ANON_KEY", { useValue: SUPABASE_ANON_KEY });
 
 const styles = StyleSheet.create({
   bottom_bar: {
