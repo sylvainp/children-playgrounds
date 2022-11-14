@@ -1,49 +1,15 @@
-import {
-  StyleSheet,
-  TouchableOpacity,
-  Text,
-  TextInput,
-  View,
-  ScrollView,
-  KeyboardTypeOptions,
-} from "react-native";
-import { container } from "tsyringe";
+import { Text, ScrollView, ActivityIndicator } from "react-native";
 import React from "react";
-import { useForm, Controller, FieldError, Control } from "react-hook-form";
-import SignupUsecase from "../domain/usecases/signup/signup.usecase";
+import { useForm } from "react-hook-form";
 import { SignupInput } from "../common/components/signup_input";
+import authState from "./authstate.hook";
+import CHButton from "../common/components/app_button";
 
 const PASSWORD_LENGTH = 10;
-const styles = StyleSheet.create({
-  scrollview: {
-    padding: 8,
-  },
-  signupButton: {
-    height: 50,
-    justifyContent: "center",
-    backgroundColor: "#b5614e",
-    borderRadius: 5,
-    marginVertical: 16,
-  },
-
-  signupLabel: {
-    color: "white",
-    textAlign: "center",
-    fontSize: 22,
-  },
-});
-
-const onTestSignupPressed = () => {
-  const signupUsecase = container.resolve(SignupUsecase);
-  signupUsecase.call({
-    email: "puccinell.sylvain@gmail.com",
-    familyName: "Puccinelli",
-    givenName: "Sylvain",
-    password: "passwordpassword",
-  });
-};
 
 function SignupComponent() {
+  console.log("SignupComponent render");
+
   const {
     control,
     handleSubmit,
@@ -59,10 +25,13 @@ function SignupComponent() {
     },
   });
 
-  const onSubmit = (data: any) => console.log({ data });
+  const { isLoading, error, signup } = authState();
+
+  const onSubmit = (data: any) =>
+    signup(data.email, data.firstName, data.lastName, data.password);
 
   return (
-    <ScrollView style={styles.scrollview}>
+    <ScrollView>
       <SignupInput
         fieldError={errors.email}
         errorMessage="Veuillez renseigner un email valide"
@@ -103,9 +72,10 @@ function SignupComponent() {
         formControl={control}
         fieldRules={{
           required: true,
-          maxLength: PASSWORD_LENGTH,
+          minLength: PASSWORD_LENGTH,
         }}
         placeholder="Mot de passe"
+        secureEntry
       />
 
       <SignupInput
@@ -115,18 +85,16 @@ function SignupComponent() {
         formControl={control}
         fieldRules={{
           required: true,
-          maxLength: PASSWORD_LENGTH,
+          minLength: PASSWORD_LENGTH,
           validate: (value: string) => value === getValues("password"),
         }}
         placeholder="Confirmation mot de passe"
+        secureEntry
       />
 
-      <TouchableOpacity
-        style={styles.signupButton}
-        onPress={handleSubmit(onSubmit)}
-      >
-        <Text style={styles.signupLabel}>S&apos;inscrire</Text>
-      </TouchableOpacity>
+      <CHButton title="S'inscrire" onPress={handleSubmit(onSubmit)} />
+      {error && <Text style={{ color: "red" }}>{error.message}</Text>}
+      {isLoading && <ActivityIndicator size="large" />}
     </ScrollView>
   );
 }

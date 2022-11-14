@@ -6,10 +6,13 @@ import { UserRepository } from "../../domain/repositories/user.repository";
 import signupRequest from "../../domain/usecases/signup/signup.request";
 import SupabaseDatasource from "../datasources/supabase.datasource";
 import SupabaseAuthError from "../models/supabase_auth.error";
+import signinRequest from "../../domain/usecases/signin/signin.request";
+import { SupabaseAuthResponse } from "../models/supabase_auth.response";
+import { SupabaseGetProfileResponse } from "../models/supabase_getprofile.response";
 
 @injectable()
 export default class UserRepositoryImpl implements UserRepository {
-  private _loggedUser: UserEntity | null = null;
+  protected _loggedUser: UserEntity | null = null;
 
   constructor(
     @inject(SupabaseDatasource.injectorName)
@@ -22,21 +25,15 @@ export default class UserRepositoryImpl implements UserRepository {
 
   async signup(request: signupRequest): Promise<void | AppError> {
     try {
-      const signupResult: {
-        email: string;
-        accessToken: string;
-        refreshToken: string;
-        id: string;
-      } | null = await this.supabaseDatasource.signup(request);
+      const signupResult: SupabaseAuthResponse | null =
+        await this.supabaseDatasource.signup(request);
 
       if (signupResult == null) {
         return Promise.resolve(new SupabaseAuthError());
       }
 
-      const getProfileResult: {
-        given_name: string;
-        family_name: string;
-      } | null = await this.supabaseDatasource.getProfile(signupResult.id);
+      const getProfileResult: SupabaseGetProfileResponse | null =
+        await this.supabaseDatasource.getProfile(signupResult.id);
 
       if (getProfileResult == null) {
         return Promise.resolve(new SupabaseAuthError());
@@ -49,6 +46,38 @@ export default class UserRepositoryImpl implements UserRepository {
         getProfileResult.given_name,
         signupResult.accessToken,
         signupResult.refreshToken
+      );
+      return Promise.resolve();
+    } catch (error) {
+      if (error instanceof AuthError) {
+        return Promise.resolve(new SupabaseAuthError(error));
+      }
+      return Promise.resolve(new SupabaseAuthError());
+    }
+  }
+
+  async signin(request: signinRequest): Promise<void | AppError> {
+    try {
+      const signinResult: SupabaseAuthResponse | null =
+        await this.supabaseDatasource.signin(request);
+
+      if (signinResult == null) {
+        return Promise.resolve(new SupabaseAuthError());
+      }
+      const getProfileResult: SupabaseGetProfileResponse | null =
+        await this.supabaseDatasource.getProfile(signinResult!.id);
+
+      if (getProfileResult == null) {
+        return Promise.resolve(new SupabaseAuthError());
+      }
+
+      this._loggedUser = new UserEntity(
+        signinResult.id,
+        signinResult.email,
+        getProfileResult.family_name,
+        getProfileResult.given_name,
+        signinResult.accessToken,
+        signinResult.refreshToken
       );
       return Promise.resolve();
     } catch (error) {
