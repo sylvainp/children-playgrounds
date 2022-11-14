@@ -2,7 +2,6 @@
 import { container } from "tsyringe";
 import { AuthError } from "@supabase/supabase-js";
 import SupabaseDatasource from "../../../src/data/datasources/supabase.datasource";
-import UserRepositoryImpl from "../../../src/data/repositories/user.repository.impl";
 import SupabaseAuthError from "../../../src/data/models/supabase_auth.error";
 import AppError from "../../../src/common/app_error";
 import SignupRequest from "../../../src/domain/usecases/signup/signup.request";
@@ -20,8 +19,8 @@ describe("userRepositoryImpl", () => {
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
     userRepository.reset();
+    jest.clearAllMocks();
   });
 
   const mockSupabaseDatasourceAuthResponse = (): SupabaseAuthResponse => {

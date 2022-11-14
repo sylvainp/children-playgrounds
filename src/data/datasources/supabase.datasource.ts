@@ -1,8 +1,7 @@
 /* eslint-disable import/no-unresolved */
-import { createClient, SupabaseClient, AuthUser } from "@supabase/supabase-js";
-import { injectable } from "tsyringe";
+import { createClient, SupabaseClient } from "@supabase/supabase-js";
+import { inject, injectable } from "tsyringe";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { SUPABASE_PROJECT_ID, SUPABASE_ANON_KEY } from "@env";
 import SignupRequest from "../../domain/usecases/signup/signup.request";
 import SigninRequest from "../../domain/usecases/signin/signin.request";
 import { SupabaseAuthResponse } from "../models/supabase_auth.response";
@@ -12,12 +11,17 @@ import { SupabaseGetProfileResponse } from "../models/supabase_getprofile.respon
 export default class SupabaseDatasource {
   static readonly injectorName = "SupabaseDatasource";
 
-  private readonly supabase_url = `https://${SUPABASE_PROJECT_ID}.supabase.co`;
+  private readonly supabase_url: string;
 
   private readonly supabaseInstance: SupabaseClient;
 
-  constructor() {
-    this.supabaseInstance = createClient(this.supabase_url, SUPABASE_ANON_KEY, {
+  constructor(
+    @inject("SUPABASE_PROJECT_ID") supabaseProjectId: string,
+    @inject("SUPABASE_ANON_KEY") supabaseAnonKey: string
+  ) {
+    this.supabase_url = `https://${supabaseProjectId}.supabase.co`;
+
+    this.supabaseInstance = createClient(this.supabase_url, supabaseAnonKey, {
       auth: {
         storage: AsyncStorage,
       },
