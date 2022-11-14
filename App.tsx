@@ -18,7 +18,6 @@ import PlaygroundsRepositoryImpl from "./src/data/repositories/playgrounds.repos
 import { PlaygroundRepositoryInjectorName } from "./src/domain/repositories/playground.repository";
 import PlaygroundsPage from "./src/presentation/playgrounds.page";
 import LoginPage from "./src/presentation/login.page";
-import HeaderSVGBackground from "./assets/images/header_background.svg";
 import SupabaseDatasource from "./src/data/datasources/supabase.datasource";
 import { UserRepositoryInjectorName } from "./src/domain/repositories/user.repository";
 import UserRepositoryImpl from "./src/data/repositories/user.repository.impl";
@@ -59,25 +58,10 @@ const styles = StyleSheet.create({
     height: 60,
   },
 
-  bottom_tab_container: {
-    textAlignVertical: "center",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-
   bottom_tab: { width: 25, height: 25 },
 
-  header_container: {
-    height: 250,
+  header: {
     backgroundColor: "#b5614e",
-  },
-
-  header_background: {
-    bottom: 0,
-    left: 0,
-    margin: 0,
-    position: "absolute",
-    right: 0,
   },
 
   header_title: {
@@ -102,20 +86,12 @@ const loginBottomTab = (focused: boolean) => (
   />
 );
 
-const header = () => (
-  <SafeAreaView style={{ backgroundColor: "#b5614e" }}>
-    <View style={styles.header_container}>
-      <HeaderSVGBackground style={styles.header_background} />
-    </View>
-  </SafeAreaView>
-);
-
 function App() {
   return (
     <NavigationContainer>
       <Tab.Navigator
         screenOptions={({ route }) => ({
-          headerBackground: () => header(),
+          headerStyle: styles.header,
           headerTitleStyle: styles.header_title,
           tabBarShowLabel: false,
           tabBarStyle: styles.bottom_bar,

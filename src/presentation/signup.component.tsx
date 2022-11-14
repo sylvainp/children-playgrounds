@@ -1,0 +1,102 @@
+import { Text, ScrollView, ActivityIndicator } from "react-native";
+import React from "react";
+import { useForm } from "react-hook-form";
+import { SignupInput } from "../common/components/signup_input";
+import authState from "./authstate.hook";
+import CHButton from "../common/components/app_button";
+
+const PASSWORD_LENGTH = 10;
+
+function SignupComponent() {
+  console.log("SignupComponent render");
+
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+    getValues,
+  } = useForm({
+    defaultValues: {
+      email: "",
+      firstName: "",
+      lastName: "",
+      password: "",
+      confirmedPassword: "",
+    },
+  });
+
+  const { isLoading, error, signup } = authState();
+
+  const onSubmit = (data: any) =>
+    signup(data.email, data.firstName, data.lastName, data.password);
+
+  return (
+    <ScrollView>
+      <SignupInput
+        fieldError={errors.email}
+        errorMessage="Veuillez renseigner un email valide"
+        fieldName="email"
+        formControl={control}
+        fieldRules={{
+          required: true,
+          pattern: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/,
+        }}
+        placeholder="Email"
+        inputType="email-address"
+      />
+      <SignupInput
+        fieldError={errors.lastName}
+        errorMessage="Veuillez renseigner votre nom"
+        fieldName="lastName"
+        formControl={control}
+        fieldRules={{
+          required: true,
+        }}
+        placeholder="Nom"
+      />
+
+      <SignupInput
+        fieldError={errors.firstName}
+        errorMessage="Veuillez renseigner votre prénom"
+        fieldName="firstName"
+        formControl={control}
+        fieldRules={{
+          required: true,
+        }}
+        placeholder="Prénom"
+      />
+      <SignupInput
+        fieldError={errors.password}
+        errorMessage={`Votre mot de passe doit contenir ${PASSWORD_LENGTH} caractères`}
+        fieldName="password"
+        formControl={control}
+        fieldRules={{
+          required: true,
+          minLength: PASSWORD_LENGTH,
+        }}
+        placeholder="Mot de passe"
+        secureEntry
+      />
+
+      <SignupInput
+        fieldError={errors.confirmedPassword}
+        errorMessage="Les deux mots de passe ne correspondent pas"
+        fieldName="confirmedPassword"
+        formControl={control}
+        fieldRules={{
+          required: true,
+          minLength: PASSWORD_LENGTH,
+          validate: (value: string) => value === getValues("password"),
+        }}
+        placeholder="Confirmation mot de passe"
+        secureEntry
+      />
+
+      <CHButton title="S'inscrire" onPress={handleSubmit(onSubmit)} />
+      {error && <Text style={{ color: "red" }}>{error.message}</Text>}
+      {isLoading && <ActivityIndicator size="large" />}
+    </ScrollView>
+  );
+}
+
+export default SignupComponent;

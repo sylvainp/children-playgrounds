@@ -6,7 +6,7 @@ import {
 import SignupRequest from "../../../src/domain/usecases/signup/signup.request";
 import SignupUsecase from "../../../src/domain/usecases/signup/signup.usecase";
 
-describe("signupRequest", () => {
+describe("signup", () => {
   let userRepository: UserRepository;
   let usecase: SignupUsecase;
   const expectedSignupRequest: SignupRequest = {
