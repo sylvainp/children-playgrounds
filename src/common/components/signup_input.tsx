@@ -19,6 +19,7 @@ export type SignupProp = {
   formControl: Control<any>;
   inputType?: KeyboardTypeOptions;
   placeholder: string;
+  secureEntry?: boolean;
 };
 
 const styles = StyleSheet.create({
@@ -49,6 +50,7 @@ export function SignupInput(props: SignupProp) {
     formControl,
     inputType,
     placeholder,
+    secureEntry,
   } = props;
   return (
     <View style={styles.root}>
@@ -66,6 +68,7 @@ export function SignupInput(props: SignupProp) {
             onBlur={onBlur}
             onChangeText={onChange}
             value={value}
+            secureTextEntry={secureEntry}
           />
         )}
       />
@@ -85,4 +88,5 @@ export function SignupInput(props: SignupProp) {
 }
 SignupInput.defaultProps = {
   inputType: "default",
+  secureEntry: false,
 };

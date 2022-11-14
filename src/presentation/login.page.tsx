@@ -2,12 +2,14 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React, { useState } from "react";
 import SegmentedControl from "@react-native-segmented-control/segmented-control";
 import SignupComponent from "./signup.component";
+import SigninComponent from "./signin.component";
 
 const styles = StyleSheet.create({
   container: {
     flexDirection: "column",
     flex: 1,
     backgroundColor: "#f4c8be",
+    padding: 8,
   },
 
   segment_control: {
@@ -17,13 +19,13 @@ const styles = StyleSheet.create({
 });
 
 function LoginPage() {
-  const [index, setIndex] = useState(1);
+  const [index, setIndex] = useState(0);
   return (
     <View style={styles.container}>
       <SegmentedControl
         style={styles.segment_control}
         values={["Se connecter", "S'inscrire"]}
-        selectedIndex={1}
+        selectedIndex={0}
         tintColor="#b5614e"
         fontStyle={{ color: "#b5614e" }}
         activeFontStyle={{ color: "white" }}
@@ -31,7 +33,7 @@ function LoginPage() {
           setIndex(event.nativeEvent.selectedSegmentIndex);
         }}
       />
-      {index === 0 && <Text style={{ textAlign: "center" }}>Comming soon</Text>}
+      {index === 0 && <SigninComponent />}
       {index === 1 && <SignupComponent />}
     </View>
   );
