@@ -82,7 +82,7 @@ describe("userRepositoryImpl", () => {
       );
       expect(result instanceof SupabaseAuthError).toBe(true);
       expect((result as SupabaseAuthError).message).toStrictEqual(
-        "Impossible de créer le compte. Veuillez ré-essayer plus tard"
+        "Une erreur est survenue. Veuillez ré-essayer plus tard"
       );
     });
 
@@ -193,6 +193,48 @@ describe("userRepositoryImpl", () => {
       expect((result as AppError).message).toStrictEqual(
         "Vos identifiants sont incorrects"
       );
+    });
+  });
+
+  describe("Signout function", () => {
+    it("must call supabase datasource signout function", async () => {
+      expect.assertions(1);
+      jest.spyOn(supabaseDatasource, "signout").mockResolvedValue(undefined);
+      await userRepository.signout();
+      expect(supabaseDatasource.signout).toHaveBeenCalledTimes(1);
+    });
+
+    it("must return an resolved promise with app error if supabase signout function failed", async () => {
+      expect.assertions(2);
+      jest
+        .spyOn(supabaseDatasource, "signout")
+        .mockRejectedValue(new AuthError("cannot signout"));
+
+      const result: void | AppError = await userRepository.signout();
+      expect(result instanceof SupabaseAuthError).toBe(true);
+      expect((result as SupabaseAuthError).message).toStrictEqual(
+        "Une erreur est survenue. Veuillez ré-essayer plus tard"
+      );
+    });
+
+    it("must logout user after signout", async () => {
+      const mockSupabaseAuthResponse: SupabaseAuthResponse =
+        mockSupabaseDatasourceAuthResponse();
+      jest
+        .spyOn(supabaseDatasource, "signin")
+        .mockResolvedValue(mockSupabaseAuthResponse);
+      jest
+        .spyOn(supabaseDatasource, "getProfile")
+        .mockResolvedValue(mockSupabaseDatasourceGetProfileResponse);
+      jest.spyOn(supabaseDatasource, "signout").mockResolvedValue(undefined);
+      expect(userRepository.loggedUser).toBeNull();
+      await userRepository.signin({
+        email: "prenom.nom@gmail.com",
+        password: "plop",
+      });
+      expect(userRepository.loggedUser).not.toBeNull();
+      await userRepository.signout();
+      expect(userRepository.loggedUser).toBeNull();
     });
   });
 });

@@ -12,8 +12,7 @@ export default class SupabaseAuthError extends AppError {
         this.message = "Un compte avec cette adresse email existe déjà";
         break;
       default:
-        this.message =
-          "Impossible de créer le compte. Veuillez ré-essayer plus tard";
+        this.message = "Une erreur est survenue. Veuillez ré-essayer plus tard";
         break;
     }
   }

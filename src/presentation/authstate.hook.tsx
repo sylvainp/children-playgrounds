@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { container } from "tsyringe";
 import UsecaseResponse from "../common/usecase/usecase_response";
+import SignoutUsecase from "../domain/usecases/logout/signout.usecase";
 import SigninUsecase from "../domain/usecases/signin/signin.usecase";
 import SignupUsecase from "../domain/usecases/signup/signup.usecase";
 
-function authState() {
+function useAuthState() {
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
 
@@ -45,7 +46,19 @@ function authState() {
     setLoading(false);
   };
 
-  return { isLoading, error, signup, signin };
+  const signout = async () => {
+    setLoading(true);
+    const signoutUsecase: SignoutUsecase = container.resolve(SignoutUsecase);
+    const result = await signoutUsecase.call();
+    if (result.error) {
+      setError(result.error);
+    } else {
+      setError(null);
+    }
+    setLoading(false);
+  };
+
+  return { isLoading, error, signup, signin, signout };
 }
 
-export default authState;
+export default useAuthState;

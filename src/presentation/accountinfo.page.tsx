@@ -1,4 +1,11 @@
-import { ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import {
+  ActivityIndicator,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import {
@@ -9,6 +16,7 @@ import {
 import UserEntity from "../domain/entities/user.entity";
 import useLoggedUser from "../common/redux/user.hook";
 import CHButton from "../common/components/app_button";
+import useAuthState from "./authstate.hook";
 
 const styles = StyleSheet.create({
   root: { padding: 8 },
@@ -56,10 +64,9 @@ const accountInput = (placeholder: string, value?: string) => (
   />
 );
 
-const logout = () => console.log("logout");
 function AccountInfoPage() {
   const user: UserEntity | null = useLoggedUser();
-
+  const { isLoading, signout } = useAuthState();
   return (
     <ScrollView style={styles.root}>
       {accountLabel(faEnvelope, "Email")}
@@ -68,7 +75,8 @@ function AccountInfoPage() {
       {accountInput("Prénom", user?.givenName)}
       {accountLabel(faUser, "Nom")}
       {accountInput("Nom", user?.familyName)}
-      <CHButton title="Se déconnecter" onPress={logout} />
+      <CHButton title="Se déconnecter" onPress={signout} />
+      {isLoading && <ActivityIndicator size="large" />}
     </ScrollView>
   );
 }

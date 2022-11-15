@@ -1,5 +1,7 @@
 import { inject, injectable } from "tsyringe";
 import { AuthError } from "@supabase/supabase-js";
+import { err } from "react-native-svg/lib/typescript/xml";
+import instance from "tsyringe/dist/typings/dependency-container";
 import AppError from "../../common/app_error";
 import UserEntity from "../../domain/entities/user.entity";
 import { UserRepository } from "../../domain/repositories/user.repository";
@@ -25,6 +27,24 @@ export default class UserRepositoryImpl implements UserRepository {
     return this._loggedUser;
   }
 
+  set loggedUser(user: UserEntity | null) {
+    this._loggedUser = user;
+    store.dispatch(
+      registerUser(
+        user
+          ? {
+              id: user.id,
+              email: user.email,
+              familyName: user.familyName,
+              givenName: user.givenName,
+              accessToken: user.accessToken,
+              refreshToken: user.refreshToken,
+            }
+          : null
+      )
+    );
+  }
+
   async signup(request: signupRequest): Promise<void | AppError> {
     try {
       const signupResult: SupabaseAuthResponse | null =
@@ -41,16 +61,15 @@ export default class UserRepositoryImpl implements UserRepository {
         return Promise.resolve(new SupabaseAuthError());
       }
 
-      this.setLoggedUser(
-        new UserEntity(
-          signupResult.id,
-          signupResult.email,
-          getProfileResult.family_name,
-          getProfileResult.given_name,
-          signupResult.accessToken,
-          signupResult.refreshToken
-        )
+      this.loggedUser = new UserEntity(
+        signupResult.id,
+        signupResult.email,
+        getProfileResult.family_name,
+        getProfileResult.given_name,
+        signupResult.accessToken,
+        signupResult.refreshToken
       );
+
       return Promise.resolve();
     } catch (error) {
       if (error instanceof AuthError) {
@@ -75,16 +94,15 @@ export default class UserRepositoryImpl implements UserRepository {
         return Promise.resolve(new SupabaseAuthError());
       }
 
-      this.setLoggedUser(
-        new UserEntity(
-          signinResult.id,
-          signinResult.email,
-          getProfileResult.family_name,
-          getProfileResult.given_name,
-          signinResult.accessToken,
-          signinResult.refreshToken
-        )
+      this.loggedUser = new UserEntity(
+        signinResult.id,
+        signinResult.email,
+        getProfileResult.family_name,
+        getProfileResult.given_name,
+        signinResult.accessToken,
+        signinResult.refreshToken
       );
+
       return Promise.resolve();
     } catch (error) {
       if (error instanceof AuthError) {
@@ -94,17 +112,18 @@ export default class UserRepositoryImpl implements UserRepository {
     }
   }
 
-  protected setLoggedUser(userEntity: UserEntity) {
-    this._loggedUser = userEntity;
-    store.dispatch(
-      registerUser({
-        id: userEntity.id,
-        email: userEntity.email,
-        familyName: userEntity.familyName,
-        givenName: userEntity.givenName,
-        accessToken: userEntity.accessToken,
-        refreshToken: userEntity.refreshToken,
-      })
-    );
+  async signout(): Promise<void | AppError> {
+    try {
+      await this.supabaseDatasource.signout();
+      this.loggedUser = null;
+    } catch (error) {
+      if (error instanceof AuthError) {
+        return Promise.resolve(new SupabaseAuthError(error));
+      }
+
+      return Promise.resolve(new SupabaseAuthError());
+    }
+
+    return Promise.resolve();
   }
 }
