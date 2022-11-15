@@ -6,4 +6,5 @@ export const UserRepositoryInjectorName: string = "UserRepository";
 export interface UserRepository {
   signup(request: SignupRequest): Promise<void | AppError>;
   signin(request: SigninRequest): Promise<void | AppError>;
+  signout(): Promise<void | AppError>;
 }

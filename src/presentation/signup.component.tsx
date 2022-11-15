@@ -2,7 +2,7 @@ import { Text, ScrollView, ActivityIndicator } from "react-native";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { SignupInput } from "../common/components/signup_input";
-import authState from "./authstate.hook";
+import useAuthState from "./authstate.hook";
 import CHButton from "../common/components/app_button";
 
 const PASSWORD_LENGTH = 10;
@@ -25,7 +25,7 @@ function SignupComponent() {
     },
   });
 
-  const { isLoading, error, signup } = authState();
+  const { isLoading, error, signup } = useAuthState();
 
   const onSubmit = (data: any) =>
     signup(data.email, data.firstName, data.lastName, data.password);
