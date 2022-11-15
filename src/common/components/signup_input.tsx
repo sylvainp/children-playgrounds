@@ -30,7 +30,6 @@ const styles = StyleSheet.create({
     borderWidth: 0,
     padding: 10,
     borderRadius: 5,
-
     backgroundColor: "white",
   },
 
@@ -69,6 +68,7 @@ export function SignupInput(props: SignupProp) {
             onChangeText={onChange}
             value={value}
             secureTextEntry={secureEntry}
+            editable
           />
         )}
       />

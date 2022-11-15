@@ -3,11 +3,10 @@ import { useForm } from "react-hook-form";
 import { ActivityIndicator, ScrollView, Text, View } from "react-native";
 import CHButton from "../common/components/app_button";
 import { SignupInput } from "../common/components/signup_input";
-import authState from "./authstate.hook";
+import useAuthState from "./authstate.hook";
 
 function SigninComponent() {
-  console.log("SigninComponent render");
-  const { isLoading, error, signin } = authState();
+  const { isLoading, error, signin } = useAuthState();
 
   const onSubmit = (data: any) => signin(data.email, data.password);
   const {

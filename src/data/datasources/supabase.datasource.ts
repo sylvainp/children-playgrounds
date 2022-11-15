@@ -1,7 +1,8 @@
 /* eslint-disable import/no-unresolved */
-import { createClient, SupabaseClient } from "@supabase/supabase-js";
+import { AuthError, createClient, SupabaseClient } from "@supabase/supabase-js";
 import { inject, injectable } from "tsyringe";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { err } from "react-native-svg/lib/typescript/xml";
 import SignupRequest from "../../domain/usecases/signup/signup.request";
 import SigninRequest from "../../domain/usecases/signin/signin.request";
 import { SupabaseAuthResponse } from "../models/supabase_auth.response";
@@ -79,5 +80,13 @@ export default class SupabaseDatasource {
     }
 
     return data.length > 0 ? data[0] : null;
+  }
+
+  async signout(): Promise<void> {
+    const { error } = await this.supabaseInstance.auth.signOut();
+    if (error) {
+      return Promise.reject(error);
+    }
+    return Promise.resolve();
   }
 }

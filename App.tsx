@@ -14,6 +14,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faMap, faUser } from "@fortawesome/free-solid-svg-icons";
 import { StyleSheet } from "react-native";
 import { SUPABASE_PROJECT_ID, SUPABASE_ANON_KEY } from "@env";
+import { Provider } from "react-redux";
 import HeraultdataDatasource from "./src/data/datasources/heraultdata.datasource";
 import PlaygroundsRepositoryImpl from "./src/data/repositories/playgrounds.repository.impl";
 import { PlaygroundRepositoryInjectorName } from "./src/domain/repositories/playground.repository";
@@ -22,6 +23,11 @@ import LoginPage from "./src/presentation/login.page";
 import SupabaseDatasource from "./src/data/datasources/supabase.datasource";
 import { UserRepositoryInjectorName } from "./src/domain/repositories/user.repository";
 import UserRepositoryImpl from "./src/data/repositories/user.repository.impl";
+import useLoggedUser from "./src/common/redux/user.hook";
+import UserEntity from "./src/domain/entities/user.entity";
+import { store } from "./src/common/redux/store";
+import AccountInfo from "./src/presentation/accountinfo.page";
+import AccountInfoPage from "./src/presentation/accountinfo.page";
 
 const Tab = createBottomTabNavigator();
 
@@ -89,7 +95,40 @@ const loginBottomTab = (focused: boolean) => (
   />
 );
 
-function App() {
+function LoginAppContent() {
+  return (
+    <NavigationContainer>
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          headerStyle: styles.header,
+          headerTitleStyle: styles.header_title,
+          tabBarShowLabel: false,
+          tabBarStyle: styles.bottom_bar,
+        })}
+      >
+        <Tab.Screen
+          name="PlaygroundPage"
+          component={PlaygroundsPage}
+          options={{
+            headerShown: false,
+            tabBarIcon: ({ focused }) => mapBottomTab(focused),
+          }}
+        />
+        <Tab.Screen
+          name="AccountInfoPage"
+          component={AccountInfoPage}
+          options={{
+            title: "Compte",
+            headerShown: true,
+            tabBarIcon: ({ focused }) => loginBottomTab(focused),
+          }}
+        />
+      </Tab.Navigator>
+    </NavigationContainer>
+  );
+}
+
+function LogoutAppContent() {
   return (
     <NavigationContainer>
       <Tab.Navigator
@@ -122,4 +161,18 @@ function App() {
   );
 }
 
-export default App;
+function App() {
+  const user: UserEntity | null = useLoggedUser();
+  console.log({ user });
+  return user !== null ? <LoginAppContent /> : <LogoutAppContent />;
+}
+
+function AppWrapper() {
+  return (
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );
+}
+
+export default AppWrapper;

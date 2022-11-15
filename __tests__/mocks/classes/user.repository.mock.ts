@@ -12,4 +12,8 @@ export default class UserRepositoryMock implements UserRepository {
   async signup(request: signupRequest): Promise<void | AppError> {
     return Promise.resolve();
   }
+
+  async signout(): Promise<void | AppError> {
+    return Promise.resolve();
+  }
 }
