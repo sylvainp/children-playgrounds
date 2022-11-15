@@ -6,7 +6,6 @@ import { SignupInput } from "../common/components/signup_input";
 import authState from "./authstate.hook";
 
 function SigninComponent() {
-  console.log("SigninComponent render");
   const { isLoading, error, signin } = authState();
 
   const onSubmit = (data: any) => signin(data.email, data.password);

@@ -9,6 +9,8 @@ import SupabaseAuthError from "../models/supabase_auth.error";
 import signinRequest from "../../domain/usecases/signin/signin.request";
 import { SupabaseAuthResponse } from "../models/supabase_auth.response";
 import { SupabaseGetProfileResponse } from "../models/supabase_getprofile.response";
+import { store } from "../../common/redux/store";
+import { registerUser } from "../../common/redux/logged_user";
 
 @injectable()
 export default class UserRepositoryImpl implements UserRepository {
@@ -39,13 +41,15 @@ export default class UserRepositoryImpl implements UserRepository {
         return Promise.resolve(new SupabaseAuthError());
       }
 
-      this._loggedUser = new UserEntity(
-        signupResult.id,
-        signupResult.email,
-        getProfileResult.family_name,
-        getProfileResult.given_name,
-        signupResult.accessToken,
-        signupResult.refreshToken
+      this.setLoggedUser(
+        new UserEntity(
+          signupResult.id,
+          signupResult.email,
+          getProfileResult.family_name,
+          getProfileResult.given_name,
+          signupResult.accessToken,
+          signupResult.refreshToken
+        )
       );
       return Promise.resolve();
     } catch (error) {
@@ -71,13 +75,15 @@ export default class UserRepositoryImpl implements UserRepository {
         return Promise.resolve(new SupabaseAuthError());
       }
 
-      this._loggedUser = new UserEntity(
-        signinResult.id,
-        signinResult.email,
-        getProfileResult.family_name,
-        getProfileResult.given_name,
-        signinResult.accessToken,
-        signinResult.refreshToken
+      this.setLoggedUser(
+        new UserEntity(
+          signinResult.id,
+          signinResult.email,
+          getProfileResult.family_name,
+          getProfileResult.given_name,
+          signinResult.accessToken,
+          signinResult.refreshToken
+        )
       );
       return Promise.resolve();
     } catch (error) {
@@ -86,5 +92,19 @@ export default class UserRepositoryImpl implements UserRepository {
       }
       return Promise.resolve(new SupabaseAuthError());
     }
+  }
+
+  protected setLoggedUser(userEntity: UserEntity) {
+    this._loggedUser = userEntity;
+    store.dispatch(
+      registerUser({
+        id: userEntity.id,
+        email: userEntity.email,
+        familyName: userEntity.familyName,
+        givenName: userEntity.givenName,
+        accessToken: userEntity.accessToken,
+        refreshToken: userEntity.refreshToken,
+      })
+    );
   }
 }
