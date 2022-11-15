@@ -1,0 +1,27 @@
+{
+  "data": {
+    "session": {
+      "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNjY3OTg4MzI2LCJzdWIiOiJmOTMzYTQ3Yi1mZjgyLTRjOTQtYTU4Yi1mN2IzZDMxZGU2NzYiLCJlbWFpbCI6InB1Y2NpbmVsbC5zeWx2YWluQGdtYWlsLmNvbSIsInBob25lIjoiIiwiYXBwX21ldGFkYXRhIjp7InByb3ZpZGVyIjoiZW1haWwiLCJwcm92aWRlcnMiOlsiZW1haWwiXX0sInVzZXJfbWV0YWRhdGEiOnsiZmFtaWx5TmFtZSI6IlB1Y2NpbmVsbGkiLCJnaXZlbk5hbWUiOiJTeWx2YWluIn0sInJvbGUiOiJhdXRoZW50aWNhdGVkIiwic2Vzc2lvbl9pZCI6ImIyZTBiMTc1LWJhYzctNDBmYy1iNjIyLWU1OGFmOGNmMGVkOSJ9.Npi7E9fHPAEmtSD3nPw-DIS3py0DhhS6AkPEr8VqPEc",
+      "expires_at": 1667988327,
+      "expires_in": 3600,
+      "refresh_token": "PB6_05NXUnHTgbUvpEWe_Q",
+      "token_type": "bearer",
+      "user": ["Object"]
+    },
+    "user": {
+      "app_metadata": ["Object"],
+      "aud": "authenticated",
+      "created_at": "2022-11-09T09:05:26.832286Z",
+      "email": "puccinell.sylvain@gmail.com",
+      "email_confirmed_at": "2022-11-09T09:05:26.848569469Z",
+      "id": "f933a47b-ff82-4c94-a58b-f7b3d31de676",
+      "identities": ["Array"],
+      "last_sign_in_at": "2022-11-09T09:05:26.851414114Z",
+      "phone": "",
+      "role": "authenticated",
+      "updated_at": "2022-11-09T09:05:26.859894Z",
+      "user_metadata": ["Object"]
+    }
+  },
+  "error": null
+}

@@ -45,7 +45,7 @@ describe("heraultdataDatasource", () => {
   it("fetchAll must return PlaygroundHeraultDatamodel array depending on fetch result", async () => {
     expect.assertions(2);
     const expectedItemsCount = 24;
-    const expectedResult = require("../../mocks/heraultdata_fetchall_page1_last.json");
+    const expectedResult = require("../../mocks/datas/heraultdata_fetchall_page1_last.json");
     mockFetchRequest([{ expectedResult, expectedStatus: 200 }]);
     const result: PlaygroundHeraultDataModel[] =
       await datasource.fetchAllPlaygrounds();
@@ -66,9 +66,9 @@ describe("heraultdataDatasource", () => {
     expect.assertions(4);
     const expectedURL = `${baseUrl}&rows=25`;
     const expectedRequestInit = { method: "GET" };
-    const expectedResult1 = require("../../mocks/herault_data_fetch_pagination/heraultdata_fetchall_page1.json");
-    const expectedResult2 = require("../../mocks/herault_data_fetch_pagination/heraultdata_fetchall_page2.json");
-    const expectedResult3 = require("../../mocks/herault_data_fetch_pagination/heraultdata_fetchall_page3.json");
+    const expectedResult1 = require("../../mocks/datas/herault_data_fetch_pagination/heraultdata_fetchall_page1.json");
+    const expectedResult2 = require("../../mocks/datas/herault_data_fetch_pagination/heraultdata_fetchall_page2.json");
+    const expectedResult3 = require("../../mocks/datas/herault_data_fetch_pagination/heraultdata_fetchall_page3.json");
     mockFetchRequest([
       { expectedResult: expectedResult1, expectedStatus: 200 },
       { expectedResult: expectedResult2, expectedStatus: 200 },

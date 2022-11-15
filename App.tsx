@@ -12,17 +12,24 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faMap, faUser } from "@fortawesome/free-solid-svg-icons";
-import { StyleSheet, View, Dimensions, SafeAreaView } from "react-native";
+import { StyleSheet } from "react-native";
+import { SUPABASE_PROJECT_ID, SUPABASE_ANON_KEY } from "@env";
+import { Provider } from "react-redux";
 import HeraultdataDatasource from "./src/data/datasources/heraultdata.datasource";
 import PlaygroundsRepositoryImpl from "./src/data/repositories/playgrounds.repository.impl";
 import { PlaygroundRepositoryInjectorName } from "./src/domain/repositories/playground.repository";
 import PlaygroundsPage from "./src/presentation/playgrounds.page";
 import LoginPage from "./src/presentation/login.page";
-import HeaderSVGBackground from "./assets/images/header_background.svg";
+import SupabaseDatasource from "./src/data/datasources/supabase.datasource";
+import { UserRepositoryInjectorName } from "./src/domain/repositories/user.repository";
+import UserRepositoryImpl from "./src/data/repositories/user.repository.impl";
+import useLoggedUser from "./src/common/redux/user.hook";
+import UserEntity from "./src/domain/entities/user.entity";
+import { store } from "./src/common/redux/store";
+import AccountInfo from "./src/presentation/accountinfo.page";
+import AccountInfoPage from "./src/presentation/accountinfo.page";
 
 const Tab = createBottomTabNavigator();
-const windowWidth = Dimensions.get("window").width;
-const windowHeight = Dimensions.get("window").height;
 
 container
   .register(
@@ -31,10 +38,22 @@ container
     { lifecycle: Lifecycle.Singleton }
   )
   .register(
+    UserRepositoryInjectorName,
+    { useClass: UserRepositoryImpl },
+    { lifecycle: Lifecycle.Singleton }
+  )
+  .register(
     HeraultdataDatasource.injectorName,
     { useClass: HeraultdataDatasource },
     { lifecycle: Lifecycle.Singleton }
-  );
+  )
+  .register(
+    SupabaseDatasource.injectorName,
+    { useClass: SupabaseDatasource },
+    { lifecycle: Lifecycle.Singleton }
+  )
+  .register("SUPABASE_PROJECT_ID", { useValue: SUPABASE_PROJECT_ID })
+  .register("SUPABASE_ANON_KEY", { useValue: SUPABASE_ANON_KEY });
 
 const styles = StyleSheet.create({
   bottom_bar: {
@@ -48,25 +67,10 @@ const styles = StyleSheet.create({
     height: 60,
   },
 
-  bottom_tab_container: {
-    textAlignVertical: "center",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-
   bottom_tab: { width: 25, height: 25 },
 
-  header_container: {
-    height: 250,
+  header: {
     backgroundColor: "#b5614e",
-  },
-
-  header_background: {
-    bottom: 0,
-    left: 0,
-    margin: 0,
-    position: "absolute",
-    right: 0,
   },
 
   header_title: {
@@ -91,20 +95,45 @@ const loginBottomTab = (focused: boolean) => (
   />
 );
 
-const header = () => (
-  <SafeAreaView style={{ backgroundColor: "#b5614e" }}>
-    <View style={styles.header_container}>
-      <HeaderSVGBackground style={styles.header_background} />
-    </View>
-  </SafeAreaView>
-);
-
-function App() {
+function LoginAppContent() {
   return (
     <NavigationContainer>
       <Tab.Navigator
         screenOptions={({ route }) => ({
-          headerBackground: () => header(),
+          headerStyle: styles.header,
+          headerTitleStyle: styles.header_title,
+          tabBarShowLabel: false,
+          tabBarStyle: styles.bottom_bar,
+        })}
+      >
+        <Tab.Screen
+          name="PlaygroundPage"
+          component={PlaygroundsPage}
+          options={{
+            headerShown: false,
+            tabBarIcon: ({ focused }) => mapBottomTab(focused),
+          }}
+        />
+        <Tab.Screen
+          name="AccountInfoPage"
+          component={AccountInfoPage}
+          options={{
+            title: "Compte",
+            headerShown: true,
+            tabBarIcon: ({ focused }) => loginBottomTab(focused),
+          }}
+        />
+      </Tab.Navigator>
+    </NavigationContainer>
+  );
+}
+
+function LogoutAppContent() {
+  return (
+    <NavigationContainer>
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          headerStyle: styles.header,
           headerTitleStyle: styles.header_title,
           tabBarShowLabel: false,
           tabBarStyle: styles.bottom_bar,
@@ -132,4 +161,18 @@ function App() {
   );
 }
 
-export default App;
+function App() {
+  const user: UserEntity | null = useLoggedUser();
+  console.log({ user });
+  return user !== null ? <LoginAppContent /> : <LogoutAppContent />;
+}
+
+function AppWrapper() {
+  return (
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );
+}
+
+export default AppWrapper;

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { container } from "tsyringe";
 import UsecaseResponse from "../common/usecase/usecase_response";
 import PlaygroundEntity from "../domain/entities/playground.entity";
-import ListAllPlaygroundsUsecase from "../domain/usecases/list_all_playgrounds.usecase";
+import ListAllPlaygroundsUsecase from "../domain/usecases/listAllPlaygrounds/list_all_playgrounds.usecase";
 
 export interface PlaygroundsState {
   error: Error | null;
