@@ -20,18 +20,12 @@ describe("userRepositoryImpl", () => {
 
   afterEach(() => {
     userRepository.reset();
-    jest.clearAllMocks();
+    jest.resetAllMocks();
   });
 
   const mockSupabaseDatasourceAuthResponse = (): Session => {
     const mocksupabaseResponse = require("../../mocks/datas/supabase_signup_success.json");
     return mocksupabaseResponse.data.session;
-    // return {
-    //   accessToken: mocksupabaseResponse.data.session!.access_token,
-    //   email: mocksupabaseResponse.data.user!.email!,
-    //   id: mocksupabaseResponse.data.user!.id,
-    //   refreshToken: mocksupabaseResponse.data.session!.refresh_token,
-    // };
   };
 
   const mockSupabaseDatasourceGetProfileResponse = {

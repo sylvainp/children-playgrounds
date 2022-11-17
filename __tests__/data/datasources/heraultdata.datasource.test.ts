@@ -12,7 +12,7 @@ describe("heraultdataDatasource", () => {
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
+    jest.resetAllMocks();
   });
 
   const mockFetchRequest = (

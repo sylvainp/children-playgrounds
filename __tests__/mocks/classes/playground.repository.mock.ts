@@ -1,11 +1,11 @@
 /* eslint-disable class-methods-use-this */
 import { autoInjectable } from "tsyringe";
-import playgroundEntity from "../../src/domain/entities/playground.entity";
-import PlaygroundRepository from "../../src/domain/repositories/playground.repository";
+import PlaygroundEntity from "../../../src/domain/entities/playground.entity";
+import PlaygroundRepository from "../../../src/domain/repositories/playground.repository";
 
 @autoInjectable()
 export default class PlaygroundRepositoryMock implements PlaygroundRepository {
-  getAll(): Promise<playgroundEntity[] | Error> {
+  getAll(): Promise<PlaygroundEntity[] | Error> {
     return Promise.resolve([]);
   }
 }

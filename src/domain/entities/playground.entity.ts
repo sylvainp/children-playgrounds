@@ -8,6 +8,6 @@ export default class PlaygroundEntity {
     public readonly id: string,
     public readonly cityName: string,
     public readonly coordinate: Coordinate,
-    public readonly updatedate: string
+    public readonly updateDate: string
   ) {}
 }
