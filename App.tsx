@@ -163,7 +163,6 @@ function LogoutAppContent() {
 
 function App() {
   const user: UserEntity | null = useLoggedUser();
-  console.log({ user });
   return user !== null ? <LoginAppContent /> : <LogoutAppContent />;
 }
 

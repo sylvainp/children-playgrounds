@@ -39,7 +39,11 @@ jest.mock("@react-native-async-storage/async-storage", () =>
 jest.mock("@supabase/supabase-js", () => {
   const mockSupabase = jest.requireActual("@supabase/supabase-js");
   mockSupabase.createClient = () => ({
-    auth: { signUp: () => Promise.resolve({ data: {}, error: {} }) },
+    auth: {
+      signUp: () => Promise.resolve({ data: {}, error: {} }),
+      onAuthStateChange: () => ({ data: {} }),
+    },
   });
+
   return mockSupabase;
 });

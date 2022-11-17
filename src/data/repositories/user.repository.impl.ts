@@ -1,7 +1,5 @@
 import { inject, injectable } from "tsyringe";
-import { AuthError } from "@supabase/supabase-js";
-import { err } from "react-native-svg/lib/typescript/xml";
-import instance from "tsyringe/dist/typings/dependency-container";
+import { AuthError, Session } from "@supabase/supabase-js";
 import AppError from "../../common/app_error";
 import UserEntity from "../../domain/entities/user.entity";
 import { UserRepository } from "../../domain/repositories/user.repository";
@@ -13,6 +11,7 @@ import { SupabaseAuthResponse } from "../models/supabase_auth.response";
 import { SupabaseGetProfileResponse } from "../models/supabase_getprofile.response";
 import { store } from "../../common/redux/store";
 import { registerUser } from "../../common/redux/logged_user";
+import { AuthEvent } from "../../domain/repositories/auth.provider";
 
 @injectable()
 export default class UserRepositoryImpl implements UserRepository {
@@ -21,13 +20,35 @@ export default class UserRepositoryImpl implements UserRepository {
   constructor(
     @inject(SupabaseDatasource.injectorName)
     private readonly supabaseDatasource: SupabaseDatasource
-  ) {}
+  ) {
+    this.supabaseDatasource.onAuthChange$.subscribe(async (event) => {
+      if (event.type === AuthEvent.SIGN_OUT) {
+        this.loggedUser = null;
+      } else if (event.type === AuthEvent.SIGN_IN) {
+        const session: Session = event.data;
+
+        const getProfileResult: SupabaseGetProfileResponse | null =
+          await this.supabaseDatasource.getProfile(session.user!.id);
+
+        if (getProfileResult) {
+          this.loggedUser = new UserEntity(
+            session.user!.id,
+            session.user!.email!,
+            getProfileResult.family_name,
+            getProfileResult.given_name,
+            session.access_token,
+            session.refresh_token
+          );
+        }
+      }
+    });
+  }
 
   get loggedUser(): UserEntity | null {
     return this._loggedUser;
   }
 
-  set loggedUser(user: UserEntity | null) {
+  private set loggedUser(user: UserEntity | null) {
     this._loggedUser = user;
     store.dispatch(
       registerUser(
@@ -47,29 +68,7 @@ export default class UserRepositoryImpl implements UserRepository {
 
   async signup(request: signupRequest): Promise<void | AppError> {
     try {
-      const signupResult: SupabaseAuthResponse | null =
-        await this.supabaseDatasource.signup(request);
-
-      if (signupResult == null) {
-        return Promise.resolve(new SupabaseAuthError());
-      }
-
-      const getProfileResult: SupabaseGetProfileResponse | null =
-        await this.supabaseDatasource.getProfile(signupResult.id);
-
-      if (getProfileResult == null) {
-        return Promise.resolve(new SupabaseAuthError());
-      }
-
-      this.loggedUser = new UserEntity(
-        signupResult.id,
-        signupResult.email,
-        getProfileResult.family_name,
-        getProfileResult.given_name,
-        signupResult.accessToken,
-        signupResult.refreshToken
-      );
-
+      await this.supabaseDatasource.signup(request);
       return Promise.resolve();
     } catch (error) {
       if (error instanceof AuthError) {
@@ -81,28 +80,7 @@ export default class UserRepositoryImpl implements UserRepository {
 
   async signin(request: signinRequest): Promise<void | AppError> {
     try {
-      const signinResult: SupabaseAuthResponse | null =
-        await this.supabaseDatasource.signin(request);
-
-      if (signinResult == null) {
-        return Promise.resolve(new SupabaseAuthError());
-      }
-      const getProfileResult: SupabaseGetProfileResponse | null =
-        await this.supabaseDatasource.getProfile(signinResult!.id);
-
-      if (getProfileResult == null) {
-        return Promise.resolve(new SupabaseAuthError());
-      }
-
-      this.loggedUser = new UserEntity(
-        signinResult.id,
-        signinResult.email,
-        getProfileResult.family_name,
-        getProfileResult.given_name,
-        signinResult.accessToken,
-        signinResult.refreshToken
-      );
-
+      await this.supabaseDatasource.signin(request);
       return Promise.resolve();
     } catch (error) {
       if (error instanceof AuthError) {

@@ -6,21 +6,20 @@
       "expires_in": 3600,
       "refresh_token": "PB6_05NXUnHTgbUvpEWe_Q",
       "token_type": "bearer",
-      "user": ["Object"]
-    },
-    "user": {
-      "app_metadata": ["Object"],
-      "aud": "authenticated",
-      "created_at": "2022-11-09T09:05:26.832286Z",
-      "email": "puccinell.sylvain@gmail.com",
-      "email_confirmed_at": "2022-11-09T09:05:26.848569469Z",
-      "id": "f933a47b-ff82-4c94-a58b-f7b3d31de676",
-      "identities": ["Array"],
-      "last_sign_in_at": "2022-11-09T09:05:26.851414114Z",
-      "phone": "",
-      "role": "authenticated",
-      "updated_at": "2022-11-09T09:05:26.859894Z",
-      "user_metadata": ["Object"]
+      "user": {
+        "app_metadata": ["Object"],
+        "aud": "authenticated",
+        "created_at": "2022-11-09T09:05:26.832286Z",
+        "email": "puccinell.sylvain@gmail.com",
+        "email_confirmed_at": "2022-11-09T09:05:26.848569469Z",
+        "id": "f933a47b-ff82-4c94-a58b-f7b3d31de676",
+        "identities": ["Array"],
+        "last_sign_in_at": "2022-11-09T09:05:26.851414114Z",
+        "phone": "",
+        "role": "authenticated",
+        "updated_at": "2022-11-09T09:05:26.859894Z",
+        "user_metadata": ["Object"]
+      }
     }
   },
   "error": null
