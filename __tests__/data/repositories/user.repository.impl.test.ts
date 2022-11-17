@@ -1,6 +1,6 @@
 /* eslint-disable global-require */
 import { container } from "tsyringe";
-import { AuthError } from "@supabase/supabase-js";
+import { AuthError, Session } from "@supabase/supabase-js";
 import SupabaseDatasource from "../../../src/data/datasources/supabase.datasource";
 import SupabaseAuthError from "../../../src/data/models/supabase_auth.error";
 import AppError from "../../../src/common/app_error";
@@ -23,14 +23,15 @@ describe("userRepositoryImpl", () => {
     jest.clearAllMocks();
   });
 
-  const mockSupabaseDatasourceAuthResponse = (): SupabaseAuthResponse => {
+  const mockSupabaseDatasourceAuthResponse = (): Session => {
     const mocksupabaseResponse = require("../../mocks/datas/supabase_signup_success.json");
-    return {
-      accessToken: mocksupabaseResponse.data.session!.access_token,
-      email: mocksupabaseResponse.data.user!.email!,
-      id: mocksupabaseResponse.data.user!.id,
-      refreshToken: mocksupabaseResponse.data.session!.refresh_token,
-    };
+    return mocksupabaseResponse.data.session;
+    // return {
+    //   accessToken: mocksupabaseResponse.data.session!.access_token,
+    //   email: mocksupabaseResponse.data.user!.email!,
+    //   id: mocksupabaseResponse.data.user!.id,
+    //   refreshToken: mocksupabaseResponse.data.session!.refresh_token,
+    // };
   };
 
   const mockSupabaseDatasourceGetProfileResponse = {
@@ -88,9 +89,10 @@ describe("userRepositoryImpl", () => {
 
     it("must first call signup datasource function and next getProfile with userId", async () => {
       expect.assertions(1);
-      jest
-        .spyOn(supabaseDatasource, "signup")
-        .mockResolvedValue(mockSupabaseDatasourceAuthResponse());
+      jest.spyOn(supabaseDatasource, "signup").mockImplementation(() => {
+        supabaseDatasource.onSignin(mockSupabaseDatasourceAuthResponse());
+        return Promise.resolve();
+      });
 
       jest.spyOn(supabaseDatasource, "getProfile").mockImplementation();
       await userRepository.signup(expectedSignupRequest);
@@ -102,9 +104,10 @@ describe("userRepositoryImpl", () => {
     it("must set loggedUser after requesting supabase datasource", async () => {
       expect.assertions(2);
       const mocksupabaseResponse = require("../../mocks/datas/supabase_signup_success.json");
-      jest
-        .spyOn(supabaseDatasource, "signup")
-        .mockResolvedValue(mockSupabaseDatasourceAuthResponse());
+      jest.spyOn(supabaseDatasource, "signup").mockImplementation(() => {
+        supabaseDatasource.onSignin(mockSupabaseDatasourceAuthResponse());
+        return Promise.resolve();
+      });
       jest.spyOn(supabaseDatasource, "getProfile").mockResolvedValue({
         given_name: expectedSignupRequest.givenName,
         family_name: expectedSignupRequest.familyName,
@@ -114,8 +117,8 @@ describe("userRepositoryImpl", () => {
       await userRepository.signup(expectedSignupRequest);
       expect(userRepository.loggedUser).toStrictEqual(
         new UserEntity(
-          mocksupabaseResponse.data.user!.id,
-          mocksupabaseResponse.data.user!.email!,
+          mocksupabaseResponse.data.session.user!.id,
+          mocksupabaseResponse.data.session.user!.email!,
           expectedSignupRequest.familyName,
           expectedSignupRequest.givenName,
           mocksupabaseResponse.data.session!.access_token,
@@ -143,28 +146,29 @@ describe("userRepositoryImpl", () => {
 
     it("must call supabase getProfile function with supabase signin response", async () => {
       expect.assertions(1);
-      const mockSupabaseAuthResponse: SupabaseAuthResponse =
+      const mockSupabaseAuthResponse: Session =
         mockSupabaseDatasourceAuthResponse();
-      jest
-        .spyOn(supabaseDatasource, "signin")
-        .mockResolvedValue(mockSupabaseAuthResponse);
+      jest.spyOn(supabaseDatasource, "signin").mockImplementation(() => {
+        supabaseDatasource.onSignin(mockSupabaseAuthResponse);
+        return Promise.resolve();
+      });
       jest
         .spyOn(supabaseDatasource, "getProfile")
         .mockResolvedValue({ given_name: "Bob", family_name: "Morane" });
       await userRepository.signin(expectedSigninRequest);
       expect(supabaseDatasource.getProfile).toHaveBeenCalledWith(
-        mockSupabaseAuthResponse.id
+        mockSupabaseAuthResponse.user.id
       );
     });
 
     it("must set loggedUser after requesting supabase datasource", async () => {
       expect.assertions(2);
-      const mockSupabaseAuthResponse: SupabaseAuthResponse =
-        mockSupabaseDatasourceAuthResponse();
+      const session: Session = mockSupabaseDatasourceAuthResponse();
+      jest.spyOn(supabaseDatasource, "signin").mockImplementation(() => {
+        supabaseDatasource.onSignin(session);
+        return Promise.resolve();
+      });
 
-      jest
-        .spyOn(supabaseDatasource, "signin")
-        .mockResolvedValue(mockSupabaseAuthResponse);
       jest
         .spyOn(supabaseDatasource, "getProfile")
         .mockResolvedValue(mockSupabaseDatasourceGetProfileResponse);
@@ -172,12 +176,12 @@ describe("userRepositoryImpl", () => {
       await userRepository.signin(expectedSigninRequest);
       expect(userRepository.loggedUser).toStrictEqual(
         new UserEntity(
-          mockSupabaseAuthResponse.id,
-          mockSupabaseAuthResponse.email,
+          session.user.id,
+          session.user.email!,
           mockSupabaseDatasourceGetProfileResponse.family_name,
           mockSupabaseDatasourceGetProfileResponse.given_name,
-          mockSupabaseAuthResponse.accessToken,
-          mockSupabaseAuthResponse.refreshToken
+          session.access_token,
+          session.refresh_token
         )
       );
     });
@@ -220,13 +224,18 @@ describe("userRepositoryImpl", () => {
     it("must logout user after signout", async () => {
       const mockSupabaseAuthResponse: SupabaseAuthResponse =
         mockSupabaseDatasourceAuthResponse();
-      jest
-        .spyOn(supabaseDatasource, "signin")
-        .mockResolvedValue(mockSupabaseAuthResponse);
+      jest.spyOn(supabaseDatasource, "signin").mockImplementation(() => {
+        supabaseDatasource.onSignin(mockSupabaseAuthResponse);
+        return Promise.resolve();
+      });
+
       jest
         .spyOn(supabaseDatasource, "getProfile")
         .mockResolvedValue(mockSupabaseDatasourceGetProfileResponse);
-      jest.spyOn(supabaseDatasource, "signout").mockResolvedValue(undefined);
+      jest.spyOn(supabaseDatasource, "signout").mockImplementation(() => {
+        supabaseDatasource.onSignout();
+        return Promise.resolve();
+      });
       expect(userRepository.loggedUser).toBeNull();
       await userRepository.signin({
         email: "prenom.nom@gmail.com",

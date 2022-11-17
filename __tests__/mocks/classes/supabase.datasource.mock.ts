@@ -12,12 +12,12 @@ export default class SupabaseDatasourceMock extends SupabaseDatasource {
     super("", "");
   }
 
-  async signup(params: SignupRequest): Promise<SupabaseAuthResponse | null> {
-    return Promise.resolve(null);
+  async signup(params: SignupRequest): Promise<void> {
+    return Promise.resolve();
   }
 
-  async signin(params: SigninRequest): Promise<SupabaseAuthResponse | null> {
-    return Promise.resolve(null);
+  async signin(params: SigninRequest): Promise<void> {
+    return Promise.resolve();
   }
 
   async getProfile(userid: string): Promise<SupabaseGetProfileResponse | null> {
