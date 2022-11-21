@@ -26,7 +26,6 @@ import UserRepositoryImpl from "./src/data/repositories/user.repository.impl";
 import useLoggedUser from "./src/common/redux/user.hook";
 import UserEntity from "./src/domain/entities/user.entity";
 import { store } from "./src/common/redux/store";
-import AccountInfo from "./src/presentation/accountinfo.page";
 import AccountInfoPage from "./src/presentation/accountinfo.page";
 
 const Tab = createBottomTabNavigator();
