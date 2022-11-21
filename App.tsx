@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React from "react";
+import React, { useEffect } from "react";
 import { container, Lifecycle } from "tsyringe";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
@@ -15,6 +15,7 @@ import { faMap, faUser } from "@fortawesome/free-solid-svg-icons";
 import { StyleSheet } from "react-native";
 import { SUPABASE_PROJECT_ID, SUPABASE_ANON_KEY } from "@env";
 import { Provider } from "react-redux";
+import SplashScreen from "react-native-splash-screen";
 import HeraultdataDatasource from "./src/data/datasources/heraultdata.datasource";
 import PlaygroundsRepositoryImpl from "./src/data/repositories/playgrounds.repository.impl";
 import { PlaygroundRepositoryInjectorName } from "./src/domain/repositories/playground.repository";
@@ -166,6 +167,7 @@ function App() {
 }
 
 function AppWrapper() {
+  useEffect(() => SplashScreen.hide());
   return (
     <Provider store={store}>
       <App />
