@@ -10,6 +10,7 @@ import {
 import { Controller, FieldError, Control } from "react-hook-form";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faCircleInfo } from "@fortawesome/free-solid-svg-icons";
+import { CHColor, CHDimen, CHFont } from "../theme";
 
 export type SignupProp = {
   errorMessage: string;
@@ -28,15 +29,18 @@ const styles = StyleSheet.create({
   input: {
     height: 40,
     borderWidth: 0,
-    padding: 10,
-    borderRadius: 5,
+    padding: CHDimen.horizontal_padding,
+    borderRadius: CHDimen.radius,
     backgroundColor: "white",
+    fontFamily: CHFont.family,
+    fontSize: CHFont.subtitle_size,
   },
 
   input_error_container: { flex: 1, flexDirection: "row", paddingTop: 4 },
   input_error_text: {
-    fontSize: 16,
-    color: "#E40017",
+    fontFamily: CHFont.family,
+    fontSize: CHFont.subtitle_size,
+    color: CHColor.error,
   },
 });
 
@@ -62,7 +66,7 @@ export function SignupInput(props: SignupProp) {
             keyboardType={inputType ?? "default"}
             autoCapitalize="none"
             placeholder={placeholder}
-            placeholderTextColor="#504D4D"
+            placeholderTextColor={CHFont.placeholder}
             style={styles.input}
             onBlur={onBlur}
             onChangeText={onChange}
@@ -76,7 +80,7 @@ export function SignupInput(props: SignupProp) {
         <View style={styles.input_error_container}>
           <FontAwesomeIcon
             style={{ marginRight: 4 }}
-            color="#E40017"
+            color={CHColor.error}
             icon={faCircleInfo}
             size={20}
           />

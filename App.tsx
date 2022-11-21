@@ -28,6 +28,7 @@ import useLoggedUser from "./src/common/redux/user.hook";
 import UserEntity from "./src/domain/entities/user.entity";
 import { store } from "./src/common/redux/store";
 import AccountInfoPage from "./src/presentation/accountinfo.page";
+import { CHColor, CHFont } from "./src/common/theme";
 
 const Tab = createBottomTabNavigator();
 
@@ -57,7 +58,7 @@ container
 
 const styles = StyleSheet.create({
   bottom_bar: {
-    backgroundColor: "#FBC687",
+    backgroundColor: CHColor.bottom_bar_background,
     borderRadius: 20,
     bottom: 25,
     left: 25,
@@ -70,17 +71,18 @@ const styles = StyleSheet.create({
   bottom_tab: { width: 25, height: 25 },
 
   header: {
-    backgroundColor: "#b5614e",
+    backgroundColor: CHColor.main,
   },
 
   header_title: {
-    color: "white",
+    color: CHFont.default_color,
     fontSize: 28,
+    fontFamily: CHFont.family,
   },
 });
 const mapBottomTab = (focused: boolean) => (
   <FontAwesomeIcon
-    color={focused ? "#b5614e" : "#EA907A"}
+    color={focused ? CHColor.main : CHColor.second}
     icon={faMap}
     size={25}
     style={styles.bottom_tab}
@@ -88,7 +90,7 @@ const mapBottomTab = (focused: boolean) => (
 );
 const loginBottomTab = (focused: boolean) => (
   <FontAwesomeIcon
-    color={focused ? "#b5614e" : "#EA907A"}
+    color={focused ? CHColor.main : CHColor.second}
     icon={faUser}
     size={25}
     style={styles.bottom_tab}
