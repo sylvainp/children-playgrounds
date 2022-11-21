@@ -489,6 +489,7 @@
 				DEVELOPMENT_TEAM = 9R4Q5BU7N5;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = childrenPlaygrounds/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Aireault;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -515,6 +516,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9R4Q5BU7N5;
 				INFOPLIST_FILE = childrenPlaygrounds/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Aireault;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
