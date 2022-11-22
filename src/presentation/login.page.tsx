@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import SegmentedControl from "@react-native-segmented-control/segmented-control";
 import SignupComponent from "./signup.component";
 import SigninComponent from "./signin.component";
+import { CHColor, CHDimen, CHFont } from "../common/theme";
 
 const styles = StyleSheet.create({
   container: {
@@ -16,6 +17,17 @@ const styles = StyleSheet.create({
     margin: 16,
     height: 50,
   },
+
+  inactive_font_style: {
+    color: CHColor.main,
+    fontSize: CHFont.title_size,
+    fontFamily: CHFont.family,
+  },
+  active_font_style: {
+    color: CHFont.default_color,
+    fontSize: CHFont.title_size,
+    fontFamily: CHFont.family,
+  },
 });
 
 function LoginPage() {
@@ -26,9 +38,9 @@ function LoginPage() {
         style={styles.segment_control}
         values={["Se connecter", "S'inscrire"]}
         selectedIndex={0}
-        tintColor="#b5614e"
-        fontStyle={{ color: "#b5614e" }}
-        activeFontStyle={{ color: "white" }}
+        tintColor={CHColor.main}
+        fontStyle={styles.inactive_font_style}
+        activeFontStyle={styles.active_font_style}
         onChange={(event) => {
           setIndex(event.nativeEvent.selectedSegmentIndex);
         }}

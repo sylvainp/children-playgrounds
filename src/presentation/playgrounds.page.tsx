@@ -17,50 +17,28 @@ import createPlaygroundsState, { PlaygroundsState } from "./playgrounds.state";
 import CHBottomSheet from "../common/components/bottom_sheet";
 import PlaygroundEntity from "../domain/entities/playground.entity";
 import CHButton from "../common/components/app_button";
+import { CHColor, CHDimen, CHFont } from "../common/theme";
 
 const styles = StyleSheet.create({
   container: {
     height: "100%",
-    backgroundColor: "#f4c8be",
+    backgroundColor: CHColor.background,
     justifyContent: "center",
   },
   activity_indicator: {
     alignSelf: "center",
     alignItems: "center",
-    color: "#b5614e",
+    color: CHColor.main,
   },
 
   error_label: {
-    fontSize: 22,
+    fontSize: CHFont.subtitle_size,
     fontWeight: "normal",
-    color: "red",
-  },
-  item: {
-    backgroundColor: "#f9c2ff",
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
-  },
-  title: {
-    fontSize: 32,
-  },
-  subtitle: {
-    fontSize: 18,
-    color: "light-grey",
+    color: CHFont.error,
   },
 
   bottomSheetContent: {
     padding: 16,
-  },
-  bottomSheetText: {
-    textAlign: "center",
-    fontSize: 22,
-    color: "white",
-  },
-  bottomSheetCloseButton: {
-    padding: 16,
-    backgroundColor: "deeppink",
-    borderRadius: 8,
   },
 });
 
@@ -98,7 +76,7 @@ function PlaygroundsPage({ navigation }: any) {
             <Marker
               coordinate={item.coordinate}
               key={item.id}
-              pinColor="#b5614e"
+              pinColor={CHColor.main}
               onPress={() => markerPressed(item)}
             />
           ))}

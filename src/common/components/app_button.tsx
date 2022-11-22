@@ -1,5 +1,6 @@
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import React from "react";
+import { CHColor, CHDimen, CHFont } from "../theme";
 
 export type CHButtonProp = {
   title: string;
@@ -8,17 +9,18 @@ export type CHButtonProp = {
 
 const styles = StyleSheet.create({
   button: {
+    backgroundColor: CHColor.main,
+    borderRadius: CHDimen.radius,
     height: 50,
     justifyContent: "center",
-    backgroundColor: "#b5614e",
-    borderRadius: 5,
     marginVertical: 16,
   },
 
   label: {
-    color: "white",
+    color: CHFont.default_color,
+    fontFamily: CHFont.family,
+    fontSize: CHFont.title_size,
     textAlign: "center",
-    fontSize: 22,
   },
 });
 

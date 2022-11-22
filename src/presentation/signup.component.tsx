@@ -1,12 +1,20 @@
-import { Text, ScrollView, ActivityIndicator } from "react-native";
+import { Text, ScrollView, ActivityIndicator, StyleSheet } from "react-native";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { SignupInput } from "../common/components/signup_input";
 import useAuthState from "./authstate.hook";
 import CHButton from "../common/components/app_button";
+import { CHFont } from "../common/theme";
 
 const PASSWORD_LENGTH = 10;
 
+const styles = StyleSheet.create({
+  error_process: {
+    color: CHFont.error,
+    fontFamily: CHFont.family,
+    fontSize: CHFont.subtitle_size,
+  },
+});
 function SignupComponent() {
   console.log("SignupComponent render");
 
@@ -93,7 +101,7 @@ function SignupComponent() {
       />
 
       <CHButton title="S'inscrire" onPress={handleSubmit(onSubmit)} />
-      {error && <Text style={{ color: "red" }}>{error.message}</Text>}
+      {error && <Text style={styles.error_process}>{error.message}</Text>}
       {isLoading && <ActivityIndicator size="large" />}
     </ScrollView>
   );

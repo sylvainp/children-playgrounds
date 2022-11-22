@@ -1,10 +1,18 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { ActivityIndicator, ScrollView, Text, View } from "react-native";
+import { ActivityIndicator, ScrollView, StyleSheet, Text } from "react-native";
 import CHButton from "../common/components/app_button";
 import { SignupInput } from "../common/components/signup_input";
+import { CHFont } from "../common/theme";
 import useAuthState from "./authstate.hook";
 
+const styles = StyleSheet.create({
+  error_process: {
+    color: CHFont.error,
+    fontFamily: CHFont.family,
+    fontSize: CHFont.subtitle_size,
+  },
+});
 function SigninComponent() {
   const { isLoading, error, signin } = useAuthState();
 
@@ -47,7 +55,7 @@ function SigninComponent() {
       />
 
       <CHButton title="Se connecter" onPress={handleSubmit(onSubmit)} />
-      {error && <Text style={{ color: "red" }}>{error.message}</Text>}
+      {error && <Text style={styles.error_process}>{error.message}</Text>}
       {isLoading && <ActivityIndicator size="large" />}
     </ScrollView>
   );

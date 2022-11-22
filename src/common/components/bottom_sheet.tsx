@@ -7,6 +7,7 @@ import {
   useWindowDimensions,
   View,
 } from "react-native";
+import { CHColor } from "../theme";
 
 const DEFAULT_HEIGHT = 300;
 
@@ -60,8 +61,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     width: "100%",
     zIndex: 1,
-    // backgroundColor: "#EA907A",
-    backgroundColor: "white",
+    backgroundColor: CHColor.background,
     borderRadius: 16,
   },
 });

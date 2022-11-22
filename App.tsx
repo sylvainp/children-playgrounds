@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React from "react";
+import React, { useEffect } from "react";
 import { container, Lifecycle } from "tsyringe";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
@@ -15,6 +15,7 @@ import { faMap, faUser } from "@fortawesome/free-solid-svg-icons";
 import { StyleSheet } from "react-native";
 import { SUPABASE_PROJECT_ID, SUPABASE_ANON_KEY } from "@env";
 import { Provider } from "react-redux";
+import SplashScreen from "react-native-splash-screen";
 import HeraultdataDatasource from "./src/data/datasources/heraultdata.datasource";
 import PlaygroundsRepositoryImpl from "./src/data/repositories/playgrounds.repository.impl";
 import { PlaygroundRepositoryInjectorName } from "./src/domain/repositories/playground.repository";
@@ -27,6 +28,7 @@ import useLoggedUser from "./src/common/redux/user.hook";
 import UserEntity from "./src/domain/entities/user.entity";
 import { store } from "./src/common/redux/store";
 import AccountInfoPage from "./src/presentation/accountinfo.page";
+import { CHColor, CHFont } from "./src/common/theme";
 
 const Tab = createBottomTabNavigator();
 
@@ -56,7 +58,7 @@ container
 
 const styles = StyleSheet.create({
   bottom_bar: {
-    backgroundColor: "#FBC687",
+    backgroundColor: CHColor.bottom_bar_background,
     borderRadius: 20,
     bottom: 25,
     left: 25,
@@ -69,17 +71,18 @@ const styles = StyleSheet.create({
   bottom_tab: { width: 25, height: 25 },
 
   header: {
-    backgroundColor: "#b5614e",
+    backgroundColor: CHColor.main,
   },
 
   header_title: {
-    color: "white",
+    color: CHFont.default_color,
     fontSize: 28,
+    fontFamily: CHFont.family,
   },
 });
 const mapBottomTab = (focused: boolean) => (
   <FontAwesomeIcon
-    color={focused ? "#b5614e" : "#EA907A"}
+    color={focused ? CHColor.main : CHColor.second}
     icon={faMap}
     size={25}
     style={styles.bottom_tab}
@@ -87,7 +90,7 @@ const mapBottomTab = (focused: boolean) => (
 );
 const loginBottomTab = (focused: boolean) => (
   <FontAwesomeIcon
-    color={focused ? "#b5614e" : "#EA907A"}
+    color={focused ? CHColor.main : CHColor.second}
     icon={faUser}
     size={25}
     style={styles.bottom_tab}
@@ -166,6 +169,7 @@ function App() {
 }
 
 function AppWrapper() {
+  useEffect(() => SplashScreen.hide());
   return (
     <Provider store={store}>
       <App />

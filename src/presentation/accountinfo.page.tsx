@@ -17,6 +17,7 @@ import UserEntity from "../domain/entities/user.entity";
 import useLoggedUser from "../common/redux/user.hook";
 import CHButton from "../common/components/app_button";
 import useAuthState from "./authstate.hook";
+import { CHDimen } from "../common/theme";
 
 const styles = StyleSheet.create({
   root: { padding: 8 },
@@ -24,9 +25,9 @@ const styles = StyleSheet.create({
   input: {
     height: 40,
     borderWidth: 0,
-    padding: 10,
-    borderRadius: 5,
-    marginTop: 8,
+    padding: CHDimen.horizontal_padding,
+    borderRadius: CHDimen.radius,
+    marginTop: CHDimen.vertical_margin,
     backgroundColor: "white",
     color: "grey",
   },
