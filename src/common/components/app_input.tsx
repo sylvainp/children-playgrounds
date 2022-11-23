@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 
 import {
+  ActivityIndicator,
   KeyboardTypeOptions,
   StyleSheet,
   Text,
@@ -11,17 +12,6 @@ import { Controller, FieldError, Control } from "react-hook-form";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faCircleInfo } from "@fortawesome/free-solid-svg-icons";
 import { CHColor, CHDimen, CHFont } from "../theme";
-
-export type SignupProp = {
-  errorMessage: string;
-  fieldError: FieldError | undefined;
-  fieldName: string;
-  fieldRules: any;
-  formControl: Control<any>;
-  inputType?: KeyboardTypeOptions;
-  placeholder: string;
-  secureEntry?: boolean;
-};
 
 const styles = StyleSheet.create({
   root: { paddingVertical: 8 },
@@ -44,7 +34,20 @@ const styles = StyleSheet.create({
   },
 });
 
-export function SignupInput(props: SignupProp) {
+export type CHTextInputProp = {
+  errorMessage: string;
+  fieldError: FieldError | undefined;
+  fieldName: string;
+  fieldRules: any;
+  formControl: Control<any>;
+  inputType?: KeyboardTypeOptions;
+  placeholder: string;
+  secureEntry?: boolean;
+  multiline?: boolean;
+  height?: number;
+};
+
+export function CHTextInput(props: CHTextInputProp) {
   const {
     errorMessage,
     fieldError,
@@ -54,6 +57,8 @@ export function SignupInput(props: SignupProp) {
     inputType,
     placeholder,
     secureEntry,
+    multiline,
+    height,
   } = props;
   return (
     <View style={styles.root}>
@@ -67,12 +72,13 @@ export function SignupInput(props: SignupProp) {
             autoCapitalize="none"
             placeholder={placeholder}
             placeholderTextColor={CHFont.placeholder}
-            style={styles.input}
+            style={[styles.input, { height }]}
             onBlur={onBlur}
             onChangeText={onChange}
             value={value}
             secureTextEntry={secureEntry}
             editable
+            multiline={multiline}
           />
         )}
       />
@@ -90,7 +96,9 @@ export function SignupInput(props: SignupProp) {
     </View>
   );
 }
-SignupInput.defaultProps = {
+CHTextInput.defaultProps = {
   inputType: "default",
   secureEntry: false,
+  multiline: false,
+  height: 40,
 };

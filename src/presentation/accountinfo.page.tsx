@@ -17,10 +17,10 @@ import UserEntity from "../domain/entities/user.entity";
 import useLoggedUser from "../common/redux/user.hook";
 import CHButton from "../common/components/app_button";
 import useAuthState from "./authstate.hook";
-import { CHDimen } from "../common/theme";
+import { CHColor, CHDimen, CHFont } from "../common/theme";
 
 const styles = StyleSheet.create({
-  root: { padding: 8 },
+  root: { padding: 8, backgroundColor: CHColor.background },
 
   input: {
     height: 40,
@@ -39,8 +39,8 @@ const styles = StyleSheet.create({
     marginTop: 16,
   },
   label: {
-    fontSize: 16,
-    color: "#b5614e",
+    fontSize: CHFont.subtitle_size,
+    color: CHColor.main,
   },
 });
 

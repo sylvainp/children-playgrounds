@@ -89,38 +89,35 @@ function PlaygroundsPage({ navigation }: any) {
         onOuterClick={() => setSelectedPlayground(null)}
       >
         <View style={styles.bottomSheetContent}>
-          {loggedUser === null && (
-            <>
-              <CHButton
-                title="Se rendre au parc"
-                onPress={async () => {
-                  const coordinate = `${
-                    selectedPlayground!.coordinate.latitude
-                  },${selectedPlayground!.coordinate.longitude}`;
-                  const label = `Parc pour enfant à ${
-                    selectedPlayground!.cityName
-                  }`;
-                  const url = Platform.select({
-                    ios: `maps:0,0?q=${label}@${coordinate}`,
-                    android: `"geo:0,0?q="${coordinate}(${label})`,
-                  });
-                  const canOpenUrl = await Linking.canOpenURL(url ?? "");
-                  if (canOpenUrl) {
-                    Linking.openURL(url!);
-                  } else {
-                    Alert.alert(
-                      "Mince !",
-                      "Impossible de lancer la navigation"
-                    );
-                  }
-                }}
-              />
-              <CHButton
-                title="Ajouter des informations"
-                onPress={() => navigation.navigate("LoginPage")}
-              />
-            </>
-          )}
+          <CHButton
+            title="Se rendre au parc"
+            onPress={async () => {
+              const coordinate = `${selectedPlayground!.coordinate.latitude},${
+                selectedPlayground!.coordinate.longitude
+              }`;
+              const label = `Parc pour enfant à ${
+                selectedPlayground!.cityName
+              }`;
+              const url = Platform.select({
+                ios: `maps:0,0?q=${label}@${coordinate}`,
+                android: `"geo:0,0?q="${coordinate}(${label})`,
+              });
+              const canOpenUrl = await Linking.canOpenURL(url ?? "");
+              if (canOpenUrl) {
+                Linking.openURL(url!);
+              } else {
+                Alert.alert("Mince !", "Impossible de lancer la navigation");
+              }
+            }}
+          />
+          <CHButton
+            title="Ajouter des informations"
+            onPress={() =>
+              loggedUser
+                ? navigation.navigate("AddPlaygroundInfo", { title: "ahah" })
+                : navigation.navigate("LoginPage")
+            }
+          />
         </View>
       </CHBottomSheet>
     </View>
