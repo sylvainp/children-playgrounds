@@ -16,7 +16,7 @@ import {
   faUser,
   faChevronLeft,
 } from "@fortawesome/free-solid-svg-icons";
-import { Button, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import { SUPABASE_PROJECT_ID, SUPABASE_ANON_KEY } from "@env";
 import { Provider } from "react-redux";
 import SplashScreen from "react-native-splash-screen";
@@ -36,8 +36,13 @@ import AccountInfoPage from "./src/presentation/accountinfo.page";
 import { CHColor, CHFont } from "./src/common/theme";
 import AddPlaygroundInfoPage from "./src/presentation/addplaygroundinfo.page";
 
+export type RootStackParamList = {
+  AddPlaygroundInfoPage: { playgroundId: string; userId: string };
+  MainLoginPage: undefined;
+};
+
 const Tab = createBottomTabNavigator();
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 container
   .register(
@@ -101,6 +106,21 @@ const styles = StyleSheet.create({
     fontFamily: CHFont.family,
   },
 });
+
+const backButton = (navigation: any) => (
+  <TouchableOpacity
+    style={styles.header_back_container}
+    onPress={() => navigation.navigate("MainLoginPage")}
+  >
+    <FontAwesomeIcon
+      icon={faChevronLeft}
+      size={15}
+      color={CHFont.default_color}
+    />
+    <Text style={styles.header_back}>Retour</Text>
+  </TouchableOpacity>
+);
+
 const mapBottomTab = (focused: boolean) => (
   <FontAwesomeIcon
     color={focused ? CHColor.main : CHColor.second}
@@ -149,30 +169,17 @@ function MainLoginScreen() {
   );
 }
 
-const backButton = (navigation: any) => (
-  <TouchableOpacity
-    style={styles.header_back_container}
-    onPress={() => navigation.navigate("Main")}
-  >
-    <FontAwesomeIcon
-      icon={faChevronLeft}
-      size={15}
-      color={CHFont.default_color}
-    />
-    <Text style={styles.header_back}>Retour</Text>
-  </TouchableOpacity>
-);
 function LoginAppContent() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="Main"
+          name="MainLoginPage"
           component={MainLoginScreen}
           options={{ headerShown: false, title: "Tous les parcs" }}
         />
         <Stack.Screen
-          name="AddPlaygroundInfo"
+          name="AddPlaygroundInfoPage"
           component={AddPlaygroundInfoPage}
           options={({ navigation }) => ({
             headerStyle: styles.header,

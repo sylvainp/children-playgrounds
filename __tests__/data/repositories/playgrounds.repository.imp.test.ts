@@ -8,10 +8,8 @@ import UserEntity from "../../../src/domain/entities/user.entity";
 import PlaygroundRepository, {
   PlaygroundRepositoryInjectorName,
 } from "../../../src/domain/repositories/playground.repository";
-import {
-  UserRepository,
-  UserRepositoryInjectorName,
-} from "../../../src/domain/repositories/user.repository";
+import { UserRepositoryInjectorName } from "../../../src/domain/repositories/user.repository";
+import AddPlaygroundInfoRequest from "../../../src/domain/usecases/addPlaygroundInfo/add_playground_info.request";
 import HeraultdataDatasourceMock from "../../mocks/classes/heraultdata.datasource.mock";
 import SupabaseDatasourceMock from "../../mocks/classes/supabase.datasource.mock";
 import UserRepositoryMock from "../../mocks/classes/user.repository.mock";
@@ -51,69 +49,94 @@ describe("PlaygroundsRepositoryImpl", () => {
     expect(repository instanceof PlaygroundsRepositoryImpl).toBe(true);
   });
 
-  it("getAll function must call heraultdatasource fetchAllRepository function if user not logged", async () => {
-    expect.assertions(2);
-    jest.spyOn(userRepository, "loggedUser", "get").mockReturnValue(null);
-    jest.spyOn(heraultDatasource, "fetchAllPlaygrounds").mockResolvedValue([]);
-    jest.spyOn(supabaseDatasource, "getPlaygrounds").mockImplementation();
-    await repository.getAll();
-    expect(heraultDatasource.fetchAllPlaygrounds).toHaveBeenCalledTimes(1);
-    expect(supabaseDatasource.getPlaygrounds).not.toHaveBeenCalled();
+  describe("getAll function", () => {
+    it("must call heraultdatasource fetchAllRepository function if user not logged", async () => {
+      expect.assertions(2);
+      jest.spyOn(userRepository, "loggedUser", "get").mockReturnValue(null);
+      jest
+        .spyOn(heraultDatasource, "fetchAllPlaygrounds")
+        .mockResolvedValue([]);
+      jest.spyOn(supabaseDatasource, "getPlaygrounds").mockImplementation();
+      await repository.getAll();
+      expect(heraultDatasource.fetchAllPlaygrounds).toHaveBeenCalledTimes(1);
+      expect(supabaseDatasource.getPlaygrounds).not.toHaveBeenCalled();
+    });
+
+    it("must call supabase fetchAllRepository function if user logged", async () => {
+      expect.assertions(2);
+      jest
+        .spyOn(userRepository, "loggedUser", "get")
+        .mockReturnValue(mockedUserEntity);
+      jest.spyOn(heraultDatasource, "fetchAllPlaygrounds").mockImplementation();
+      jest.spyOn(supabaseDatasource, "getPlaygrounds").mockResolvedValue([]);
+      await repository.getAll();
+      expect(heraultDatasource.fetchAllPlaygrounds).not.toHaveBeenCalled();
+      expect(supabaseDatasource.getPlaygrounds).toHaveBeenCalledTimes(1);
+    });
+
+    it("must return PlaygroundEntity array built on heraultdatasource response", async () => {
+      expect.assertions(1);
+      const mockReturnedValue: PlaygroundHeraultDataModel[] =
+        require("../../mocks/datas/herault_data_playgrounds.json") as PlaygroundHeraultDataModel[];
+
+      jest
+        .spyOn(heraultDatasource, "fetchAllPlaygrounds")
+        .mockResolvedValue(mockReturnedValue);
+      await expect(repository.getAll()).resolves.toStrictEqual(
+        mockReturnedValue.map(
+          (item) =>
+            new PlaygroundEntity(
+              item.recordid,
+              item.fields.com_nom,
+              {
+                latitude: item.geometry.coordinates[1],
+                longitude: item.geometry.coordinates[0],
+              },
+              item.record_timestamp
+            )
+        )
+      );
+    });
+
+    it("must return an error based on heraultdatasource error", async () => {
+      expect.assertions(1);
+      const expectedError = new Error("server unreachable");
+      jest
+        .spyOn(heraultDatasource, "fetchAllPlaygrounds")
+        .mockRejectedValue(expectedError);
+      await expect(repository.getAll()).resolves.toStrictEqual(expectedError);
+    });
+
+    it("must return a error based on unexpected error throw by heraultdatasource response", async () => {
+      expect.assertions(1);
+      const expectedError = { error: { message: ["server unreachable"] } };
+      jest
+        .spyOn(heraultDatasource, "fetchAllPlaygrounds")
+        .mockRejectedValue(expectedError);
+      await expect(repository.getAll()).resolves.toStrictEqual(
+        new Error(JSON.stringify(expectedError))
+      );
+    });
   });
+  describe("addInfo function", () => {
+    const addInfoRequest: AddPlaygroundInfoRequest = {
+      playgroundId: "1",
+      userId: "1",
+      rate: 3,
+      comment: "It's my comment",
+      gamesId: [],
+    };
 
-  it("getAll function must call supabase fetchAllRepository function if user logged", async () => {
-    expect.assertions(2);
-    jest
-      .spyOn(userRepository, "loggedUser", "get")
-      .mockReturnValue(mockedUserEntity);
-    jest.spyOn(heraultDatasource, "fetchAllPlaygrounds").mockImplementation();
-    jest.spyOn(supabaseDatasource, "getPlaygrounds").mockResolvedValue([]);
-    await repository.getAll();
-    expect(heraultDatasource.fetchAllPlaygrounds).not.toHaveBeenCalled();
-    expect(supabaseDatasource.getPlaygrounds).toHaveBeenCalledTimes(1);
-  });
-
-  it("getAll must return PlaygroundEntity array built on heraultdatasource response", async () => {
-    expect.assertions(1);
-    const mockReturnedValue: PlaygroundHeraultDataModel[] =
-      require("../../mocks/datas/herault_data_playgrounds.json") as PlaygroundHeraultDataModel[];
-
-    jest
-      .spyOn(heraultDatasource, "fetchAllPlaygrounds")
-      .mockResolvedValue(mockReturnedValue);
-    await expect(repository.getAll()).resolves.toStrictEqual(
-      mockReturnedValue.map(
-        (item) =>
-          new PlaygroundEntity(
-            item.recordid,
-            item.fields.com_nom,
-            {
-              latitude: item.geometry.coordinates[1],
-              longitude: item.geometry.coordinates[0],
-            },
-            item.record_timestamp
-          )
-      )
-    );
-  });
-
-  it("getAll must return an error based on heraultdatasource error", async () => {
-    expect.assertions(1);
-    const expectedError = new Error("server unreachable");
-    jest
-      .spyOn(heraultDatasource, "fetchAllPlaygrounds")
-      .mockRejectedValue(expectedError);
-    await expect(repository.getAll()).resolves.toStrictEqual(expectedError);
-  });
-
-  it("getAll must return a error based on unexpected error throw by heraultdatasource response", async () => {
-    expect.assertions(1);
-    const expectedError = { error: { message: ["server unreachable"] } };
-    jest
-      .spyOn(heraultDatasource, "fetchAllPlaygrounds")
-      .mockRejectedValue(expectedError);
-    await expect(repository.getAll()).resolves.toStrictEqual(
-      new Error(JSON.stringify(expectedError))
-    );
+    it("must call supabase datasource with add info request", async () => {
+      expect.assertions(2);
+      jest
+        .spyOn(supabaseDatasource, "addPlaygroundInfo")
+        .mockResolvedValue(undefined);
+      await repository.addInfo(addInfoRequest);
+      expect(supabaseDatasource.addPlaygroundInfo).toHaveBeenCalledTimes(1);
+      expect(supabaseDatasource.addPlaygroundInfo).toHaveBeenCalledWith(
+        addInfoRequest
+      );
+    });
   });
 });

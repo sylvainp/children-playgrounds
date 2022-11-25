@@ -12,6 +12,7 @@ import {
   AuthProvider,
   AuthEvent,
 } from "../../domain/repositories/auth.provider";
+import AddPlaygroundInfoRequest from "../../domain/usecases/addPlaygroundInfo/add_playground_info.request";
 
 @injectable()
 export default class SupabaseDatasource extends AuthProvider {
@@ -79,6 +80,14 @@ export default class SupabaseDatasource extends AuthProvider {
     return Promise.resolve();
   }
 
+  async signout(): Promise<void> {
+    const { error } = await this.supabaseInstance.auth.signOut();
+    if (error) {
+      return Promise.reject(error);
+    }
+    return Promise.resolve();
+  }
+
   async getProfile(userid: string): Promise<SupabaseGetProfileResponse | null> {
     const { data, error } = await this.supabaseInstance
       .from("profile")
@@ -104,11 +113,22 @@ export default class SupabaseDatasource extends AuthProvider {
     return Promise.resolve(data);
   }
 
-  async signout(): Promise<void> {
-    const { error } = await this.supabaseInstance.auth.signOut();
+  async addPlaygroundInfo(request: AddPlaygroundInfoRequest): Promise<any> {
+    const { data, error } = await this.supabaseInstance
+      .from("tested_playground")
+      .upsert({
+        playground_id: request.playgroundId,
+        user_id: request.userId,
+        rate: request.rate,
+        comment: request.comment,
+        visited_date: new Date(),
+      })
+      .select();
     if (error) {
       return Promise.reject(error);
     }
-    return Promise.resolve();
+
+    console.log({ data, error });
+    return Promise.resolve(data);
   }
 }
