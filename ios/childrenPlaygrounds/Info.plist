@@ -36,7 +36,15 @@
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string/>
+	<string></string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Atma-Bold.ttf</string>
+		<string>Atma-Light.ttf</string>
+		<string>Atma-Medium.ttf</string>
+		<string>Atma-Regular.ttf</string>
+		<string>Atma-SemiBold.ttf</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -46,18 +54,14 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
+		<string>UIInterfaceOrientationPortrait</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>UIAppFonts</key>
-	<array>
-		<string>Atma-Bold.ttf</string>
-		<string>Atma-Light.ttf</string>
-		<string>Atma-Medium.ttf</string>
-		<string>Atma-Regular.ttf</string>
-		<string>Atma-SemiBold.ttf</string>
-	</array>
 </dict>
 </plist>

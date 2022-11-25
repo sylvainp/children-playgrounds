@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { ActivityIndicator, ScrollView, StyleSheet, Text } from "react-native";
 import CHButton from "../common/components/app_button";
-import { SignupInput } from "../common/components/signup_input";
+import { CHTextInput } from "../common/components/app_input";
 import { CHFont } from "../common/theme";
 import useAuthState from "./authstate.hook";
 
@@ -30,7 +30,7 @@ function SigninComponent() {
 
   return (
     <ScrollView>
-      <SignupInput
+      <CHTextInput
         fieldError={errors.email}
         errorMessage="Veuillez renseigner un email valide"
         fieldName="email"
@@ -42,7 +42,7 @@ function SigninComponent() {
         placeholder="Email"
         inputType="email-address"
       />
-      <SignupInput
+      <CHTextInput
         fieldError={errors.password}
         errorMessage="Veuillez renseigner votre mot de passe"
         fieldName="password"

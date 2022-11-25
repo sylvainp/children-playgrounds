@@ -12,14 +12,14 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		436F5DEDAE124AD5BBACD381 /* Atma-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7E56BE6C75CF4E379ECD98AE /* Atma-Medium.ttf */; };
+		53C2B79C5AFD4E0DA9F7CE02 /* Atma-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F1548D3DE87F43498702B775 /* Atma-Bold.ttf */; };
 		7699B88040F8A987B510C191 /* libPods-childrenPlaygrounds-childrenPlaygroundsTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-childrenPlaygrounds-childrenPlaygroundsTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		53C2B79C5AFD4E0DA9F7CE02 /* Atma-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F1548D3DE87F43498702B775 /* Atma-Bold.ttf */; };
 		8F744DDE174B4D42B1F373DE /* Atma-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ABC6F82322EB41019DF149FF /* Atma-Light.ttf */; };
-		436F5DEDAE124AD5BBACD381 /* Atma-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7E56BE6C75CF4E379ECD98AE /* Atma-Medium.ttf */; };
-		FDD97F997BCA4CDEA8AF7D87 /* Atma-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E018B62009344817824D7295 /* Atma-Regular.ttf */; };
 		9CB11205B58449A79CF9CD97 /* Atma-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 38D78D8C864B4207BE759451 /* Atma-SemiBold.ttf */; };
 		A80C7455BBAF4D9D8F426848 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6BD8DE4F1ED3432B8FAD4EC3 /* OFL.txt */; };
+		FDD97F997BCA4CDEA8AF7D87 /* Atma-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E018B62009344817824D7295 /* Atma-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,19 +43,19 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = childrenPlaygrounds/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = childrenPlaygrounds/main.m; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-childrenPlaygrounds-childrenPlaygroundsTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-childrenPlaygrounds-childrenPlaygroundsTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		38D78D8C864B4207BE759451 /* Atma-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Atma-SemiBold.ttf"; path = "../assets/fonts/Atma/Atma-SemiBold.ttf"; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-childrenPlaygrounds.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-childrenPlaygrounds.debug.xcconfig"; path = "Target Support Files/Pods-childrenPlaygrounds/Pods-childrenPlaygrounds.debug.xcconfig"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-childrenPlaygrounds.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-childrenPlaygrounds.release.xcconfig"; path = "Target Support Files/Pods-childrenPlaygrounds/Pods-childrenPlaygrounds.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-childrenPlaygrounds-childrenPlaygroundsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-childrenPlaygrounds-childrenPlaygroundsTests.debug.xcconfig"; path = "Target Support Files/Pods-childrenPlaygrounds-childrenPlaygroundsTests/Pods-childrenPlaygrounds-childrenPlaygroundsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-childrenPlaygrounds.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-childrenPlaygrounds.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6BD8DE4F1ED3432B8FAD4EC3 /* OFL.txt */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = OFL.txt; path = ../assets/fonts/Atma/OFL.txt; sourceTree = "<group>"; };
+		7E56BE6C75CF4E379ECD98AE /* Atma-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Atma-Medium.ttf"; path = "../assets/fonts/Atma/Atma-Medium.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = childrenPlaygrounds/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-childrenPlaygrounds-childrenPlaygroundsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-childrenPlaygrounds-childrenPlaygroundsTests.release.xcconfig"; path = "Target Support Files/Pods-childrenPlaygrounds-childrenPlaygroundsTests/Pods-childrenPlaygrounds-childrenPlaygroundsTests.release.xcconfig"; sourceTree = "<group>"; };
+		ABC6F82322EB41019DF149FF /* Atma-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Atma-Light.ttf"; path = "../assets/fonts/Atma/Atma-Light.ttf"; sourceTree = "<group>"; };
+		E018B62009344817824D7295 /* Atma-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Atma-Regular.ttf"; path = "../assets/fonts/Atma/Atma-Regular.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		F1548D3DE87F43498702B775 /* Atma-Bold.ttf */ = {isa = PBXFileReference; name = "Atma-Bold.ttf"; path = "../assets/fonts/Atma/Atma-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		ABC6F82322EB41019DF149FF /* Atma-Light.ttf */ = {isa = PBXFileReference; name = "Atma-Light.ttf"; path = "../assets/fonts/Atma/Atma-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		7E56BE6C75CF4E379ECD98AE /* Atma-Medium.ttf */ = {isa = PBXFileReference; name = "Atma-Medium.ttf"; path = "../assets/fonts/Atma/Atma-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		E018B62009344817824D7295 /* Atma-Regular.ttf */ = {isa = PBXFileReference; name = "Atma-Regular.ttf"; path = "../assets/fonts/Atma/Atma-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		38D78D8C864B4207BE759451 /* Atma-SemiBold.ttf */ = {isa = PBXFileReference; name = "Atma-SemiBold.ttf"; path = "../assets/fonts/Atma/Atma-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		6BD8DE4F1ED3432B8FAD4EC3 /* OFL.txt */ = {isa = PBXFileReference; name = "OFL.txt"; path = "../assets/fonts/Atma/OFL.txt"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F1548D3DE87F43498702B775 /* Atma-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Atma-Bold.ttf"; path = "../assets/fonts/Atma/Atma-Bold.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +118,19 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		5032186757ED4EBBB3F95B75 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F1548D3DE87F43498702B775 /* Atma-Bold.ttf */,
+				ABC6F82322EB41019DF149FF /* Atma-Light.ttf */,
+				7E56BE6C75CF4E379ECD98AE /* Atma-Medium.ttf */,
+				E018B62009344817824D7295 /* Atma-Regular.ttf */,
+				38D78D8C864B4207BE759451 /* Atma-SemiBold.ttf */,
+				6BD8DE4F1ED3432B8FAD4EC3 /* OFL.txt */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -160,20 +173,6 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
-		};
-		5032186757ED4EBBB3F95B75 /* Resources */ = {
-			isa = "PBXGroup";
-			children = (
-				F1548D3DE87F43498702B775 /* Atma-Bold.ttf */,
-				ABC6F82322EB41019DF149FF /* Atma-Light.ttf */,
-				7E56BE6C75CF4E379ECD98AE /* Atma-Medium.ttf */,
-				E018B62009344817824D7295 /* Atma-Regular.ttf */,
-				38D78D8C864B4207BE759451 /* Atma-SemiBold.ttf */,
-				6BD8DE4F1ED3432B8FAD4EC3 /* OFL.txt */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-			path = "";
 		};
 /* End PBXGroup section */
 

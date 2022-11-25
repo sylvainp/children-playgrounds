@@ -1,7 +1,7 @@
 import { Text, ScrollView, ActivityIndicator, StyleSheet } from "react-native";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { SignupInput } from "../common/components/signup_input";
+import { CHTextInput } from "../common/components/app_input";
 import useAuthState from "./authstate.hook";
 import CHButton from "../common/components/app_button";
 import { CHFont } from "../common/theme";
@@ -16,8 +16,6 @@ const styles = StyleSheet.create({
   },
 });
 function SignupComponent() {
-  console.log("SignupComponent render");
-
   const {
     control,
     handleSubmit,
@@ -40,7 +38,7 @@ function SignupComponent() {
 
   return (
     <ScrollView>
-      <SignupInput
+      <CHTextInput
         fieldError={errors.email}
         errorMessage="Veuillez renseigner un email valide"
         fieldName="email"
@@ -52,7 +50,7 @@ function SignupComponent() {
         placeholder="Email"
         inputType="email-address"
       />
-      <SignupInput
+      <CHTextInput
         fieldError={errors.lastName}
         errorMessage="Veuillez renseigner votre nom"
         fieldName="lastName"
@@ -63,7 +61,7 @@ function SignupComponent() {
         placeholder="Nom"
       />
 
-      <SignupInput
+      <CHTextInput
         fieldError={errors.firstName}
         errorMessage="Veuillez renseigner votre prénom"
         fieldName="firstName"
@@ -73,7 +71,7 @@ function SignupComponent() {
         }}
         placeholder="Prénom"
       />
-      <SignupInput
+      <CHTextInput
         fieldError={errors.password}
         errorMessage={`Votre mot de passe doit contenir ${PASSWORD_LENGTH} caractères`}
         fieldName="password"
@@ -86,7 +84,7 @@ function SignupComponent() {
         secureEntry
       />
 
-      <SignupInput
+      <CHTextInput
         fieldError={errors.confirmedPassword}
         errorMessage="Les deux mots de passe ne correspondent pas"
         fieldName="confirmedPassword"

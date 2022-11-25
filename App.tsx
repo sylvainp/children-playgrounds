@@ -11,11 +11,16 @@ import { container, Lifecycle } from "tsyringe";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faMap, faUser } from "@fortawesome/free-solid-svg-icons";
-import { StyleSheet } from "react-native";
+import {
+  faMap,
+  faUser,
+  faChevronLeft,
+} from "@fortawesome/free-solid-svg-icons";
+import { Button, StyleSheet, Text, TouchableOpacity } from "react-native";
 import { SUPABASE_PROJECT_ID, SUPABASE_ANON_KEY } from "@env";
 import { Provider } from "react-redux";
 import SplashScreen from "react-native-splash-screen";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HeraultdataDatasource from "./src/data/datasources/heraultdata.datasource";
 import PlaygroundsRepositoryImpl from "./src/data/repositories/playgrounds.repository.impl";
 import { PlaygroundRepositoryInjectorName } from "./src/domain/repositories/playground.repository";
@@ -29,8 +34,10 @@ import UserEntity from "./src/domain/entities/user.entity";
 import { store } from "./src/common/redux/store";
 import AccountInfoPage from "./src/presentation/accountinfo.page";
 import { CHColor, CHFont } from "./src/common/theme";
+import AddPlaygroundInfoPage from "./src/presentation/addplaygroundinfo.page";
 
 const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
 
 container
   .register(
@@ -68,7 +75,10 @@ const styles = StyleSheet.create({
     height: 60,
   },
 
-  bottom_tab: { width: 25, height: 25 },
+  bottom_tab: {
+    position: "absolute",
+    top: 17,
+  },
 
   header: {
     backgroundColor: CHColor.main,
@@ -77,6 +87,17 @@ const styles = StyleSheet.create({
   header_title: {
     color: CHFont.default_color,
     fontSize: 28,
+    fontFamily: CHFont.family,
+  },
+
+  header_back_container: {
+    alignItems: "center",
+    flexDirection: "row",
+    justifyContent: "flex-start",
+  },
+  header_back: {
+    color: CHFont.default_color,
+    fontSize: 18,
     fontFamily: CHFont.family,
   },
 });
@@ -97,35 +118,71 @@ const loginBottomTab = (focused: boolean) => (
   />
 );
 
+function MainLoginScreen() {
+  return (
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        headerStyle: styles.header,
+        headerTitleStyle: styles.header_title,
+        tabBarShowLabel: false,
+        tabBarStyle: styles.bottom_bar,
+      })}
+    >
+      <Tab.Screen
+        name="PlaygroundPage"
+        component={PlaygroundsPage}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ focused }) => mapBottomTab(focused),
+        }}
+      />
+      <Tab.Screen
+        name="AccountInfoPage"
+        component={AccountInfoPage}
+        options={{
+          title: "Compte",
+          headerShown: true,
+          tabBarIcon: ({ focused }) => loginBottomTab(focused),
+        }}
+      />
+    </Tab.Navigator>
+  );
+}
+
+const backButton = (navigation: any) => (
+  <TouchableOpacity
+    style={styles.header_back_container}
+    onPress={() => navigation.navigate("Main")}
+  >
+    <FontAwesomeIcon
+      icon={faChevronLeft}
+      size={15}
+      color={CHFont.default_color}
+    />
+    <Text style={styles.header_back}>Retour</Text>
+  </TouchableOpacity>
+);
 function LoginAppContent() {
   return (
     <NavigationContainer>
-      <Tab.Navigator
-        screenOptions={({ route }) => ({
-          headerStyle: styles.header,
-          headerTitleStyle: styles.header_title,
-          tabBarShowLabel: false,
-          tabBarStyle: styles.bottom_bar,
-        })}
-      >
-        <Tab.Screen
-          name="PlaygroundPage"
-          component={PlaygroundsPage}
-          options={{
-            headerShown: false,
-            tabBarIcon: ({ focused }) => mapBottomTab(focused),
-          }}
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Main"
+          component={MainLoginScreen}
+          options={{ headerShown: false, title: "Tous les parcs" }}
         />
-        <Tab.Screen
-          name="AccountInfoPage"
-          component={AccountInfoPage}
-          options={{
-            title: "Compte",
-            headerShown: true,
-            tabBarIcon: ({ focused }) => loginBottomTab(focused),
-          }}
+        <Stack.Screen
+          name="AddPlaygroundInfo"
+          component={AddPlaygroundInfoPage}
+          options={({ navigation }) => ({
+            headerStyle: styles.header,
+            headerTitleStyle: styles.header_title,
+            headerBackTitleStyle: styles.header_title,
+            headerLeft: () => backButton(navigation),
+            title: "Ajouter des informations",
+          })}
         />
-      </Tab.Navigator>
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }
