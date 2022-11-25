@@ -13,11 +13,11 @@ import MapView from "react-native-map-clustering";
 import { Marker } from "react-native-maps";
 import useLoggedUser from "../common/redux/user.hook";
 import UserEntity from "../domain/entities/user.entity";
-import createPlaygroundsState, { PlaygroundsState } from "./playgrounds.state";
 import CHBottomSheet from "../common/components/bottom_sheet";
 import PlaygroundEntity from "../domain/entities/playground.entity";
 import CHButton from "../common/components/app_button";
-import { CHColor, CHDimen, CHFont } from "../common/theme";
+import { CHColor, CHFont } from "../common/theme";
+import usePlaygroundState from "./playgroundstate.hook";
 
 const styles = StyleSheet.create({
   container: {
@@ -50,34 +50,31 @@ const INITIAL_REGION = {
 };
 
 function PlaygroundsPage({ navigation }: any) {
-  const pageState: PlaygroundsState = createPlaygroundsState();
+  // const pageState: PlaygroundsState = createPlaygroundsState();
+  const { allPlaygrounds, isLoading, error, getAllPlaygrounds } =
+    usePlaygroundState();
   const loggedUser: UserEntity | null = useLoggedUser();
   const [selectedPlayground, setSelectedPlayground] =
     useState<PlaygroundEntity | null>(null);
 
   useEffect(() => {
-    pageState.getAllPlaygrounds();
+    getAllPlaygrounds();
   }, []);
 
-  const markerPressed = (pressedPlayground: PlaygroundEntity) => {
-    setSelectedPlayground(pressedPlayground);
-  };
   return (
     <View style={styles.container}>
-      {pageState.isLoading && (
+      {isLoading && (
         <ActivityIndicator style={styles.activity_indicator} size="large" />
       )}
-      {pageState.error && (
-        <Text style={styles.error_label}>{pageState.error.message}</Text>
-      )}
-      {!pageState.isLoading && (
+      {error && <Text style={styles.error_label}>{error.message}</Text>}
+      {allPlaygrounds && (
         <MapView initialRegion={INITIAL_REGION} style={{ flex: 1 }}>
-          {pageState.playgrounds?.map((item) => (
+          {allPlaygrounds.map((item) => (
             <Marker
               coordinate={item.coordinate}
               key={item.id}
               pinColor={CHColor.main}
-              onPress={() => markerPressed(item)}
+              onPress={() => setSelectedPlayground(item)}
             />
           ))}
         </MapView>
@@ -114,7 +111,10 @@ function PlaygroundsPage({ navigation }: any) {
             title="Ajouter des informations"
             onPress={() =>
               loggedUser
-                ? navigation.navigate("AddPlaygroundInfo", { title: "ahah" })
+                ? navigation.navigate("AddPlaygroundInfoPage", {
+                    playgroundId: selectedPlayground?.id,
+                    userId: loggedUser.id,
+                  })
                 : navigation.navigate("LoginPage")
             }
           />

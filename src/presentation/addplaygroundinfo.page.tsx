@@ -16,9 +16,12 @@ import {
   faPuzzlePiece,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { RouteProp, useRoute } from "@react-navigation/native";
 import { CHTextInput } from "../common/components/app_input";
 import { CHColor, CHDimen, CHFont } from "../common/theme";
 import CHButton from "../common/components/app_button";
+import usePlaygroundState from "./playgroundstate.hook";
+import { RootStackParamList } from "../../App";
 
 type GameItem = { id: number; name: string };
 const styles = StyleSheet.create({
@@ -101,7 +104,12 @@ const fakeGames = [
   { id: 7, name: "Tourniquet" },
   { id: 8, name: "Terrain de basketball" },
 ];
+
 function AddPlaygroundInfoPage() {
+  const route =
+    useRoute<RouteProp<RootStackParamList, "AddPlaygroundInfoPage">>();
+  const { playgroundId, userId } = route.params;
+  const { isLoading, error, addPlaygroundInfo } = usePlaygroundState();
   const {
     control,
     handleSubmit,
@@ -138,11 +146,21 @@ function AddPlaygroundInfoPage() {
         multiline
         height={100}
       />
-      {playgroundInfoLabel(faPuzzlePiece, "Jeux")}
+      {/* {playgroundInfoLabel(faPuzzlePiece, "Jeux")}
 
-      {createGridComponent(fakeGames)}
+      {createGridComponent(fakeGames)} */}
 
-      <CHButton title="Valider" onPress={console.log} />
+      <CHButton
+        title="Valider"
+        onPress={handleSubmit((data: any) =>
+          addPlaygroundInfo({
+            playgroundId,
+            userId,
+            comment: data.comment,
+            rate: data.rate,
+          })
+        )}
+      />
     </ScrollView>
   );
 }

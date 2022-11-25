@@ -1,5 +1,6 @@
 import { inject, injectable } from "tsyringe";
 import PlaygroundEntity from "../../domain/entities/playground.entity";
+import TestedPlaygroundEntity from "../../domain/entities/testedplayground.entity";
 import PlaygroundRepository from "../../domain/repositories/playground.repository";
 import {
   UserRepository,
@@ -67,5 +68,11 @@ export default class PlaygroundsRepositoryImpl implements PlaygroundRepository {
         return Promise.resolve(new Error(JSON.stringify(error)));
       }
     }
+  }
+
+  async addInfo(
+    request: AddPlaygroundInfoRequest
+  ): Promise<TestedPlaygroundEntity | Error> {
+    await this.supabaseDatasource.addPlaygroundInfo(request);
   }
 }
