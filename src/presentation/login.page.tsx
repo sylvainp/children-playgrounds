@@ -36,8 +36,10 @@ function LoginPage() {
     <View style={styles.container}>
       <SegmentedControl
         style={styles.segment_control}
+        backgroundColor="white"
+        appearance="light"
         values={["Se connecter", "S'inscrire"]}
-        selectedIndex={0}
+        selectedIndex={index}
         tintColor={CHColor.main}
         fontStyle={styles.inactive_font_style}
         activeFontStyle={styles.active_font_style}

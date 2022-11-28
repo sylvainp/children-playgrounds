@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     fontFamily: CHFont.family,
     fontSize: CHFont.subtitle_size,
+    color: "black",
   },
 
   input_error_container: { flex: 1, flexDirection: "row", paddingTop: 4 },
@@ -79,6 +80,7 @@ export function CHTextInput(props: CHTextInputProp) {
             secureTextEntry={secureEntry}
             editable
             multiline={multiline}
+            cursorColor={CHColor.main}
           />
         )}
       />

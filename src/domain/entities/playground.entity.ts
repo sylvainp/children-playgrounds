@@ -16,10 +16,8 @@ export default class PlaygroundEntity {
 
   isVisitedPlaygroundForUserId(userid: string): boolean {
     return this.testedPlayground
-      ? this.testedPlayground!.filter((item) => {
-          console.log(`compare ${item.userId} with ${userid}`);
-          return item.userId === userid;
-        }).length > 0
+      ? this.testedPlayground!.filter((item) => item.userId === userid).length >
+          0
       : false;
   }
 }

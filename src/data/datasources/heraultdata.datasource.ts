@@ -14,12 +14,14 @@ import PlaygroundHeraultDataModel from "../models/playground_heraultdata.model";
 export default class HeraultdataDatasource {
   static readonly injectorName: string = "HeraultdataDatasource";
 
-  readonly records_per_page: number = 25;
-
   private startIndex: number = 0;
 
   private readonly base_url =
     "https://www.herault-data.fr/api/records/1.0/search/?dataset=aires-de-jeux-herault";
+
+  protected get records_per_page(): number {
+    return 800;
+  }
 
   async fetchAllPlaygrounds(): Promise<PlaygroundHeraultDataModel[]> {
     let datas: PlaygroundHeraultDataModel[] = [];
