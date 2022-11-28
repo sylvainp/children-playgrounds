@@ -13,6 +13,6 @@ export default class PlaygroundRepositoryMock implements PlaygroundRepository {
   addInfo(
     request: AddPlaygroundInfoRequest
   ): Promise<TestedPlaygroundEntity | Error> {
-    return Promise.resolve(new TestedPlaygroundEntity("1", "2", "3"));
+    return Promise.resolve(new TestedPlaygroundEntity("1", "2", 3));
   }
 }

@@ -6,12 +6,20 @@ export interface Coordinate {
 }
 
 export default class PlaygroundEntity {
-  private _testedPlayground?: TestedPlaygroundEntity[];
-
   constructor(
     public readonly id: string,
     public readonly cityName: string,
     public readonly coordinate: Coordinate,
-    public readonly updateDate: string
+    public readonly updateDate: string,
+    public readonly testedPlayground?: TestedPlaygroundEntity[]
   ) {}
+
+  isVisitedPlaygroundForUserId(userid: string): boolean {
+    return this.testedPlayground
+      ? this.testedPlayground!.filter((item) => {
+          console.log(`compare ${item.userId} with ${userid}`);
+          return item.userId === userid;
+        }).length > 0
+      : false;
+  }
 }

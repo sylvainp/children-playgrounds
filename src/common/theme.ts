@@ -4,6 +4,9 @@ export const CHColor = {
   background: "#f4c8be",
   bottom_bar_background: "#FBC687",
   error: "#E40017",
+  default_pin: "#b5614e",
+  own_visited_pin: "#20A225",
+  other_visited_pin: "#FEBB24",
 };
 export const CHFont = {
   family: "Atma-Regular",
