@@ -10,7 +10,7 @@ import {
   View,
 } from "react-native";
 import MapView from "react-native-map-clustering";
-import { Marker } from "react-native-maps";
+import { Marker, MarkerPressEvent } from "react-native-maps";
 import useLoggedUser from "../common/redux/user.hook";
 import UserEntity from "../domain/entities/user.entity";
 import CHBottomSheet from "../common/components/bottom_sheet";
@@ -49,6 +49,35 @@ const INITIAL_REGION = {
   longitudeDelta: 8.5,
 };
 
+const pinColor = (
+  playground: PlaygroundEntity,
+  loggedUser: UserEntity | null
+): string => {
+  if (loggedUser === null) {
+    return CHColor.default_pin;
+  }
+  if (playground.isVisitedPlaygroundForUserId(loggedUser.id)) {
+    return CHColor.own_visited_pin;
+  }
+  if (playground.testedPlayground && playground.testedPlayground.length > 0) {
+    return CHColor.other_visited_pin;
+  }
+  return CHColor.default_pin;
+};
+
+const customMarker = (
+  playground: PlaygroundEntity,
+  onMarkerPress: (playground: PlaygroundEntity) => void,
+  loggedUser: UserEntity | null
+) => (
+  <Marker
+    coordinate={playground.coordinate}
+    key={playground.id}
+    pinColor={pinColor(playground, loggedUser)}
+    onPress={(item) => onMarkerPress(playground)}
+  />
+);
+
 function PlaygroundsPage({ navigation }: any) {
   // const pageState: PlaygroundsState = createPlaygroundsState();
   const { allPlaygrounds, isLoading, error, getAllPlaygrounds } =
@@ -69,14 +98,9 @@ function PlaygroundsPage({ navigation }: any) {
       {error && <Text style={styles.error_label}>{error.message}</Text>}
       {allPlaygrounds && (
         <MapView initialRegion={INITIAL_REGION} style={{ flex: 1 }}>
-          {allPlaygrounds.map((item) => (
-            <Marker
-              coordinate={item.coordinate}
-              key={item.id}
-              pinColor={CHColor.main}
-              onPress={() => setSelectedPlayground(item)}
-            />
-          ))}
+          {allPlaygrounds.map((item) =>
+            customMarker(item, setSelectedPlayground, loggedUser)
+          )}
         </MapView>
       )}
 

@@ -6,6 +6,7 @@ import {
   UserRepository,
   UserRepositoryInjectorName,
 } from "../../domain/repositories/user.repository";
+import AddPlaygroundInfoRequest from "../../domain/usecases/addPlaygroundInfo/add_playground_info.request";
 import HeraultdataDatasource from "../datasources/heraultdata.datasource";
 import SupabaseDatasource from "../datasources/supabase.datasource";
 import PlaygroundHeraultDataModel from "../models/playground_heraultdata.model";
@@ -28,15 +29,26 @@ export default class PlaygroundsRepositoryImpl implements PlaygroundRepository {
         const supabaseDatasourceResult: PlaygroundSupabaseModel[] =
           await this.supabaseDatasource.getPlaygrounds();
         return supabaseDatasourceResult.map(
-          (item) =>
+          (playgroundmodel) =>
             new PlaygroundEntity(
-              item.id,
-              item.cityName,
+              playgroundmodel.id,
+              playgroundmodel.cityName,
               {
-                latitude: item.coordinate.latitude,
-                longitude: item.coordinate.longitude,
+                latitude: playgroundmodel.coordinate.latitude,
+                longitude: playgroundmodel.coordinate.longitude,
               },
-              item.updateDate
+              playgroundmodel.updateDate,
+              playgroundmodel.tested_playground
+                ? playgroundmodel.tested_playground.map(
+                    (testedplaygroundmodel) =>
+                      new TestedPlaygroundEntity(
+                        testedplaygroundmodel.user_id,
+                        testedplaygroundmodel.playground_id,
+                        testedplaygroundmodel.rate,
+                        testedplaygroundmodel.comment
+                      )
+                  )
+                : undefined
             )
         );
       } catch (error) {
