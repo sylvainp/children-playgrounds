@@ -1,6 +1,7 @@
 /* eslint-disable global-require */
 import HeraultdataDatasource from "../../../src/data/datasources/heraultdata.datasource";
 import PlaygroundHeraultDataModel from "../../../src/data/models/playground_heraultdata.model";
+import HeraultdataDatasourceMock from "../../mocks/classes/heraultdata.datasource.mock";
 
 describe("heraultdataDatasource", () => {
   const baseUrl =
@@ -8,7 +9,7 @@ describe("heraultdataDatasource", () => {
   let datasource: HeraultdataDatasource;
 
   beforeAll(() => {
-    datasource = new HeraultdataDatasource();
+    datasource = new HeraultdataDatasourceMock();
   });
 
   afterEach(() => {

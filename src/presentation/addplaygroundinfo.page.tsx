@@ -130,6 +130,7 @@ function AddPlaygroundInfoPage() {
           validate: (value: number) => value >= 0 && value <= 5,
         }}
         placeholder="Note"
+        inputType="numeric"
       />
       {playgroundInfoLabel(faFileEdit, "Commentaire")}
 
