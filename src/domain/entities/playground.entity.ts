@@ -20,4 +20,10 @@ export default class PlaygroundEntity {
           0
       : false;
   }
+
+  getOwnTestedPlayground(userid: string): TestedPlaygroundEntity | undefined {
+    const result: TestedPlaygroundEntity | undefined =
+      this.testedPlayground?.find((item) => item.userId === userid);
+    return result;
+  }
 }

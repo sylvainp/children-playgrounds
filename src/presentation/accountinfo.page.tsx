@@ -16,7 +16,7 @@ import {
 import UserEntity from "../domain/entities/user.entity";
 import useLoggedUser from "../common/redux/user.hook";
 import CHButton from "../common/components/app_button";
-import useAuthState from "./authstate.hook";
+import useAuth from "./auth.hook";
 import { CHColor, CHDimen, CHFont } from "../common/theme";
 
 const styles = StyleSheet.create({
@@ -67,7 +67,7 @@ const accountInput = (placeholder: string, value?: string) => (
 
 function AccountInfoPage() {
   const user: UserEntity | null = useLoggedUser();
-  const { isLoading, signout } = useAuthState();
+  const { isLoading, signout } = useAuth();
   return (
     <ScrollView style={styles.root}>
       {accountLabel(faEnvelope, "Email")}

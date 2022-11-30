@@ -2,7 +2,7 @@ import { Text, ScrollView, ActivityIndicator, StyleSheet } from "react-native";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { CHTextInput } from "../common/components/app_input";
-import useAuthState from "./authstate.hook";
+import useAuth from "./auth.hook";
 import CHButton from "../common/components/app_button";
 import { CHFont } from "../common/theme";
 
@@ -31,7 +31,7 @@ function SignupComponent() {
     },
   });
 
-  const { isLoading, error, signup } = useAuthState();
+  const { isLoading, error, signup } = useAuth();
 
   const onSubmit = (data: any) =>
     signup(data.email, data.firstName, data.lastName, data.password);

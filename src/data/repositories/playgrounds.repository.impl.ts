@@ -7,6 +7,8 @@ import {
   UserRepositoryInjectorName,
 } from "../../domain/repositories/user.repository";
 import AddPlaygroundInfoRequest from "../../domain/usecases/addPlaygroundInfo/add_playground_info.request";
+import GetPlaygroundUsecaseRequest from "../../domain/usecases/getPlayground/get_playground.request";
+
 import HeraultdataDatasource from "../datasources/heraultdata.datasource";
 import SupabaseDatasource from "../datasources/supabase.datasource";
 import PlaygroundHeraultDataModel from "../models/playground_heraultdata.model";
@@ -38,17 +40,15 @@ export default class PlaygroundsRepositoryImpl implements PlaygroundRepository {
                 longitude: playgroundmodel.coordinate.longitude,
               },
               playgroundmodel.updateDate,
-              playgroundmodel.tested_playground
-                ? playgroundmodel.tested_playground.map(
-                    (testedplaygroundmodel) =>
-                      new TestedPlaygroundEntity(
-                        testedplaygroundmodel.user_id,
-                        testedplaygroundmodel.playground_id,
-                        testedplaygroundmodel.rate,
-                        testedplaygroundmodel.comment
-                      )
+              playgroundmodel.tested_playground?.map(
+                (testedplaygroundmodel) =>
+                  new TestedPlaygroundEntity(
+                    testedplaygroundmodel.user_id,
+                    testedplaygroundmodel.playground_id,
+                    testedplaygroundmodel.rate,
+                    testedplaygroundmodel.comment
                   )
-                : undefined
+              )
             )
         );
       } catch (error) {
@@ -86,5 +86,38 @@ export default class PlaygroundsRepositoryImpl implements PlaygroundRepository {
     request: AddPlaygroundInfoRequest
   ): Promise<TestedPlaygroundEntity | Error> {
     await this.supabaseDatasource.addPlaygroundInfo(request);
+  }
+
+  async getPlayground(
+    request: GetPlaygroundUsecaseRequest
+  ): Promise<PlaygroundEntity | Error | null> {
+    try {
+      const playgroundModel = await this.supabaseDatasource.getPlayground(
+        request.playgroundId
+      );
+      if (playgroundModel) {
+        return new PlaygroundEntity(
+          playgroundModel!.id,
+          playgroundModel!.cityName,
+          playgroundModel!.coordinate,
+          playgroundModel!.updateDate,
+          playgroundModel!.tested_playground?.map(
+            (item) =>
+              new TestedPlaygroundEntity(
+                item.user_id,
+                item.playground_id,
+                item.rate,
+                item.comment
+              )
+          )
+        );
+      }
+      return Promise.resolve(null);
+    } catch (error) {
+      if (error instanceof Error) {
+        return Promise.resolve(error);
+      }
+      return Promise.resolve(new Error(JSON.stringify(error)));
+    }
   }
 }

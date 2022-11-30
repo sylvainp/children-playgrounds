@@ -10,14 +10,15 @@ import {
   View,
 } from "react-native";
 import MapView from "react-native-map-clustering";
-import { Marker, MarkerPressEvent } from "react-native-maps";
+import { Marker } from "react-native-maps";
+import { useIsFocused } from "@react-navigation/native";
 import useLoggedUser from "../common/redux/user.hook";
 import UserEntity from "../domain/entities/user.entity";
 import CHBottomSheet from "../common/components/bottom_sheet";
 import PlaygroundEntity from "../domain/entities/playground.entity";
 import CHButton from "../common/components/app_button";
 import { CHColor, CHFont } from "../common/theme";
-import usePlaygroundState from "./playgroundstate.hook";
+import usePlayground from "./playground.hook";
 
 const styles = StyleSheet.create({
   container: {
@@ -79,16 +80,18 @@ const customMarker = (
 );
 
 function PlaygroundsPage({ navigation }: any) {
-  // const pageState: PlaygroundsState = createPlaygroundsState();
+  const isFocused = useIsFocused();
   const { allPlaygrounds, isLoading, error, getAllPlaygrounds } =
-    usePlaygroundState();
+    usePlayground();
   const loggedUser: UserEntity | null = useLoggedUser();
   const [selectedPlayground, setSelectedPlayground] =
     useState<PlaygroundEntity | null>(null);
 
   useEffect(() => {
-    getAllPlaygrounds();
-  }, []);
+    if (isFocused) {
+      getAllPlaygrounds();
+    }
+  }, [isFocused]);
 
   return (
     <View style={styles.container}>
@@ -141,6 +144,10 @@ function PlaygroundsPage({ navigation }: any) {
                   })
                 : navigation.navigate("LoginPage")
             }
+          />
+          <CHButton
+            title="Tester les InputText"
+            onPress={() => navigation.navigate("TestTextinput")}
           />
         </View>
       </CHBottomSheet>
