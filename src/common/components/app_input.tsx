@@ -46,6 +46,7 @@ export type CHTextInputProp = {
   secureEntry?: boolean;
   multiline?: boolean;
   height?: number;
+  defaultValue?: string;
 };
 
 export function CHTextInput(props: CHTextInputProp) {
@@ -60,13 +61,18 @@ export function CHTextInput(props: CHTextInputProp) {
     secureEntry,
     multiline,
     height,
+    defaultValue,
   } = props;
+
+  // console.log({ fieldName, value });
+
   return (
     <View style={styles.root}>
       <Controller
         name={fieldName}
         control={formControl}
         rules={fieldRules}
+        defaultValue={defaultValue}
         render={({ field: { onChange, onBlur, value } }) => (
           <TextInput
             keyboardType={inputType ?? "default"}
@@ -76,11 +82,11 @@ export function CHTextInput(props: CHTextInputProp) {
             style={[styles.input, { height }]}
             onBlur={onBlur}
             onChangeText={onChange}
-            value={value}
             secureTextEntry={secureEntry}
             editable
             multiline={multiline}
             cursorColor={CHColor.main}
+            defaultValue={defaultValue}
           />
         )}
       />
@@ -103,4 +109,5 @@ CHTextInput.defaultProps = {
   secureEntry: false,
   multiline: false,
   height: 40,
+  defaultValue: undefined,
 };

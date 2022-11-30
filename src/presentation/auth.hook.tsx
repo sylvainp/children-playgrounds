@@ -5,7 +5,7 @@ import SignoutUsecase from "../domain/usecases/logout/signout.usecase";
 import SigninUsecase from "../domain/usecases/signin/signin.usecase";
 import SignupUsecase from "../domain/usecases/signup/signup.usecase";
 
-function useAuthState() {
+function useAuth() {
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
 
@@ -61,4 +61,4 @@ function useAuthState() {
   return { isLoading, error, signup, signin, signout };
 }
 
-export default useAuthState;
+export default useAuth;

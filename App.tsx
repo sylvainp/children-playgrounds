@@ -34,12 +34,8 @@ import UserEntity from "./src/domain/entities/user.entity";
 import { store } from "./src/common/redux/store";
 import AccountInfoPage from "./src/presentation/accountinfo.page";
 import { CHColor, CHFont } from "./src/common/theme";
+import { RootStackParamList } from "./src/common/root_stack_param_list";
 import AddPlaygroundInfoPage from "./src/presentation/addplaygroundinfo.page";
-
-export type RootStackParamList = {
-  AddPlaygroundInfoPage: { playgroundId: string; userId: string };
-  MainLoginPage: undefined;
-};
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator<RootStackParamList>();

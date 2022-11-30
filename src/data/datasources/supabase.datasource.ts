@@ -130,4 +130,18 @@ export default class SupabaseDatasource extends AuthProvider {
 
     return Promise.resolve(data);
   }
+
+  async getPlayground(
+    playgroundId: string
+  ): Promise<PlaygroundSupabaseModel | null> {
+    const { data, error } = await this.supabaseInstance
+      .from("playgrounds")
+      .select("*, tested_playground(*)")
+      .eq("id", playgroundId)
+      .single();
+    if (error) {
+      return Promise.reject(error);
+    }
+    return Promise.resolve(data);
+  }
 }

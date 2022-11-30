@@ -4,7 +4,7 @@ import { ActivityIndicator, ScrollView, StyleSheet, Text } from "react-native";
 import CHButton from "../common/components/app_button";
 import { CHTextInput } from "../common/components/app_input";
 import { CHFont } from "../common/theme";
-import useAuthState from "./authstate.hook";
+import useAuth from "./auth.hook";
 
 const styles = StyleSheet.create({
   error_process: {
@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   },
 });
 function SigninComponent() {
-  const { isLoading, error, signin } = useAuthState();
+  const { isLoading, error, signin } = useAuth();
 
   const onSubmit = (data: any) => signin(data.email, data.password);
   const {

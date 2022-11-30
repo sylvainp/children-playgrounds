@@ -1,1 +1,1 @@
-export default class UsecaseRequest {}
+export default interface UsecaseRequest {}
