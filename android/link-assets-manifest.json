@@ -1,0 +1,29 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/fonts/Atma/Atma-Bold.ttf",
+      "sha1": "8e1868c21ad8d508683f246e9fbc4d3d7a086079"
+    },
+    {
+      "path": "assets/fonts/Atma/Atma-Light.ttf",
+      "sha1": "b37d8c0735f8f31ffee73323cb04d145f46fee91"
+    },
+    {
+      "path": "assets/fonts/Atma/Atma-Medium.ttf",
+      "sha1": "54893e257fc27ef91e8170147251f09bd941775d"
+    },
+    {
+      "path": "assets/fonts/Atma/Atma-Regular.ttf",
+      "sha1": "56b5aa7e2893748c58c6cb699dcd7ebfaa030a30"
+    },
+    {
+      "path": "assets/fonts/Atma/Atma-SemiBold.ttf",
+      "sha1": "c74ca3d242e1c1acddeedbc7bb66ee77ca50f0fe"
+    },
+    {
+      "path": "assets/fonts/Atma/OFL.txt",
+      "sha1": "43513d1f6a1329962106efc212457e1d6ef9e980"
+    }
+  ]
+}

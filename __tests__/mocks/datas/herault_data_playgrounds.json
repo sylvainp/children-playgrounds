@@ -1,0 +1,33 @@
+[
+  {
+    "datasetid": "aires-de-jeux-herault",
+    "recordid": "4cbe5acca007b2ad53bd8d13ed652128a890699d",
+    "fields": {
+      "com_nom": "Montpellier",
+      "epci": "Montpellier Méditerranée Métropole",
+      "geopoint": [43.5829642005414, 3.8578436],
+      "access": "yes",
+      "com_insee": 34172
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [3.8578436, 43.5829642005414]
+    },
+    "record_timestamp": "2022-10-21T04:08:36.885Z"
+  },
+  {
+    "datasetid": "aires-de-jeux-herault",
+    "recordid": "41809d03b44a797397c3b897d31c2e0f6a5d29e3",
+    "fields": {
+      "com_nom": "Montpellier",
+      "epci": "Montpellier Méditerranée Métropole",
+      "geopoint": [43.6215184521207, 3.86731140671131],
+      "com_insee": 34172
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [3.86731140671131, 43.6215184521207]
+    },
+    "record_timestamp": "2022-10-21T04:08:36.885Z"
+  }
+]
